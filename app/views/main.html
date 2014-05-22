@@ -1,0 +1,14 @@
+<div class="box">
+  <div class="row" ng-repeat="item in screeninvader.playlist.items">
+      <div class="col-xs-10 col-md-10">
+        <p class="playMe title" title="play"> <i class="glyphicon glyphicon-play playIcon" ></i> {{$index + 1}} {{item.title}}</p>
+      </div>
+      <div class="itemControll">
+          <a href="#"><span class="glyphicon glyphicon-trash"></span> </a>
+          <a href="#" ng-click="getUrl($index + '_url')">url</a>
+      </div>
+      <div class="col-xs-10 col-md-10">
+        <input id="{{$index + '_url'}}" class="hide form-control" type="text" value="{{item.source}}"></input>
+      </div>
+  </div>
+</div>
