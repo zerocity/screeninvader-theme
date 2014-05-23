@@ -1,6 +1,9 @@
 <div class="box">
   <div class="row" ng-repeat="item in screeninvader.playlist.items">
-      <div class="col-xs-10 col-md-10">
+      <div class="col-xs-2 col-md-1">
+        <youtube-Thumbnail url="item.source" size='64' />
+      </div>
+      <div class="col-xs-8 col-md-10">
         <a ui-sref="app.action({ type: 'play',id:$index })" class="title" title="play">
            <i class="glyphicon glyphicon-play playIcon" ></i> {{$index + 1}} - {{item.title}}
         </a>

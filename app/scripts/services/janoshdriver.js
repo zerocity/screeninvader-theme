@@ -1,24 +1,28 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .factory('JanoshDriver', function ($http,$q) {
+  .factory('JanoshDriver', function ($http,$timeout) {
 
     var _ServerUrl = 'http://192.168.0.11:5555/cgi-bin/get?/.',
-        service = {};
+        service = {},
+        _model = {};
 
     service.getJanoshData = function() {
-      var deferred = $q.defer();
-
-      $http({
-        method:'GET',
-        url: _ServerUrl
-      }).success(function(data){
-        deferred.resolve(data);
-      }).error(function(){
-        deferred.reject('There was an error');
+      $http.get(_ServerUrl).then(function(r) {
+        _model = r.data;
+        $timeout(service.getJanoshData,700);
       });
-
-      return deferred.promise;
     };
+
+    service.getJanoshData();
+
+    service.setModel = function(model) {
+      _model = model;
+    }
+
+    service.getModel = function() {
+      return _model
+    }
+
     return service
 });
