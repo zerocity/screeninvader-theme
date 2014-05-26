@@ -146,6 +146,18 @@ ul.menu {
   list-style: none;
 }
 
+.activeItem {
+  color: #41B436;
+  padding-right: 5px;
+  list-style: none;
+  display: inline;
+}
+
+.activeItem.title i.playIcon {
+  display: inline;
+  font-size: 1em;
+}
+
 .title {
   margin: 0;
 }

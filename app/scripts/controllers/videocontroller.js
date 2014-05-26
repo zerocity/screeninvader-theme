@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .controller('VideocontrollerCtrl', function ($scope,JanoshDriver,$timeout) {
+  .controller('VideocontrollerCtrl', function ($scope,JanoshDriver,$rootScope) {
 
-  $scope.model = JanoshDriver.getModel();
+    $rootScope.$watch('model',function() {
+      $scope.model = $rootScope.model;
+    });
 
   });

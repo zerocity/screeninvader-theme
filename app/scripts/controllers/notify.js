@@ -1,57 +1,73 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .controller('NotifyCtrl', function ($scope,$timeout,$state,$stateParams) {
+  .controller('NotifyCtrl', function ($scope,$timeout,$state,$stateParams,$rootScope,JanoshDriver) {
   $scope.isHidden = true;
 
-  $scope.showNotification = function() {
+  $scope.showNotification = function(context) {
     $scope.isHidden = false;
+    $scope.contex = context;
+
     $timeout(function() {
       $scope.isHidden = true;
-      $state.go('app');
+      if ($rootScope.previousState.name == '') {
+        $state.go('app');
+      } else {
+        $state.go($rootScope.previousState.name);
+      }
     },1500);
   }
 
   switch($stateParams.type) {
     case 'del':
-      $scope.contex = 'Item will be deleated';
-      $scope.showNotification();
+      if ($stateParams.id) {JanoshDriver.deleatItem($stateParams.id) }
+      $scope.showNotification('Item will be deleated');
+      console.log($rootScope.previousState);
       break;
     case 'play':
-      $scope.contex = 'Item will be played';
-      $scope.showNotification();
+      if ($stateParams.id) {JanoshDriver.playItem($stateParams.id) }
+      $scope.showNotification('Item will be played');
+      console.log($rootScope.previousState);
       break;
     case 'step-backward':
-      $scope.contex = 'step-backward';
-      $scope.showNotification();
+      JanoshDriver.stepBackward()
+      $scope.showNotification('step-backward');
+      console.log($rootScope.previousState);
       break;
     case 'fast-backward':
-      $scope.contex = 'fast-backward';
-      $scope.showNotification();
+      JanoshDriver.fastBackward()
+      $scope.showNotification('fast-backward');
+      console.log($rootScope.previousState);
       break;
     case 'backward':
-      $scope.contex = 'backward';
-      $scope.showNotification();
+      JanoshDriver.backward()
+      $scope.showNotification('backward');
+      console.log($rootScope.previousState);
       break;
     case 'stop':
-      $scope.contex = 'stop';
-      $scope.showNotification();
+      JanoshDriver.stop()
+      $scope.showNotification('stop');
+      console.log($rootScope.previousState);
       break;
     case 'pause':
-      $scope.contex = 'pause';
-      $scope.showNotification();
+      JanoshDriver.pause();
+      $scope.showNotification('pause');
+      console.log($rootScope.previousState);
       break;
     case 'forward':
-      $scope.contex = 'forward';
-      $scope.showNotification();
+      JanoshDriver.forward()
+      $scope.showNotification('forward');
+      console.log($rootScope.previousState);
       break;
     case 'fast-forward':
-      $scope.contex = 'fast-forward';
-      $scope.showNotification();
+      JanoshDriver.fastForward()
+      $scope.showNotification('fast-forward');
+      console.log($rootScope.previousState);
       break;
     case 'step-forward':
-      $scope.contex = 'step-forward';
-      $scope.showNotification();
+      JanoshDriver.stepForward()
+      $scope.showNotification('step-forward');
+      console.log($rootScope.previousState);
       break;
   }
 
