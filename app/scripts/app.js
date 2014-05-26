@@ -118,22 +118,18 @@ angular
             case 'del':
               if ($stateParams.id) {JanoshDriver.deleatItem($stateParams.id) }
               showNotification('Item will be deleated');
-              console.log($rootScope.previousState);
               break;
             case 'play':
               if ($stateParams.id) {JanoshDriver.playItem($stateParams.id) }
               showNotification('Item will be played');
-              console.log($rootScope.previousState);
               break;
             case 'stop':
               JanoshDriver.stop()
               showNotification('stop');
-              console.log($rootScope.previousState);
               break;
             case 'pause':
               JanoshDriver.pause();
               showNotification('pause');
-              console.log($rootScope.previousState);
               break;
            }
         }
@@ -144,11 +140,7 @@ angular
         onEnter: function($stateParams, $state,$rootScope,JanoshDriver) {
 
           var showNotification = function(context) {
-
             var oldURL = location.href.split('#/')[1];
-            console.log(oldURL);
-            console.log($stateParams);
-
             var oldState = function() {
               if (oldURL === '') {
                 return 'app'
@@ -173,52 +165,58 @@ angular
             case 'del':
               if ($stateParams.id) {JanoshDriver.deleatItem($stateParams.id) }
               showNotification('Item will be deleated');
-              console.log($rootScope.previousState);
               break;
             case 'play':
               if ($stateParams.id) {JanoshDriver.playItem($stateParams.id) }
               showNotification('Item will be played');
-              console.log($rootScope.previousState);
               break;
             case 'step-backward':
-              JanoshDriver.stepBackward()
+              JanoshDriver.stepBackward();
               showNotification('step-backward');
-              console.log($rootScope.previousState);
               break;
             case 'fast-backward':
-              JanoshDriver.fastBackward()
+              JanoshDriver.fastBackward();
               showNotification('fast-backward');
-              console.log($rootScope.previousState);
               break;
             case 'backward':
-              JanoshDriver.backward()
+              JanoshDriver.backward();
               showNotification('backward');
-              console.log($rootScope.previousState);
               break;
             case 'stop':
-              JanoshDriver.stop()
+              JanoshDriver.stop();
               showNotification('stop');
-              console.log($rootScope.previousState);
               break;
             case 'pause':
-              JanoshDriver.pause();
+              JanoshDriver.pause();;
               showNotification('pause');
-              console.log($rootScope.previousState);
               break;
             case 'forward':
-              JanoshDriver.forward()
+              JanoshDriver.forward();
               showNotification('forward');
-              console.log($rootScope.previousState);
               break;
             case 'fast-forward':
-              JanoshDriver.fastForward()
+              JanoshDriver.fastForward();
               showNotification('fast-forward');
-              console.log($rootScope.previousState);
               break;
             case 'step-forward':
-              JanoshDriver.stepForward()
+              JanoshDriver.stepForward();
               showNotification('step-forward');
-              console.log($rootScope.previousState);
+              break;
+            case 'queue':
+              JanoshDriver.toggleQueue();
+              showNotification('queue');
+              break;
+            case 'browserClose':
+              JanoshDriver.browserClose();
+              showNotification('browserClose');
+              break;
+            case 'pdfClose':
+              JanoshDriver.pdfClose();
+              showNotification('pdfClose');
+              break;
+            case 'playerClose':
+              JanoshDriver.playerClose();
+              showNotification('playerClose');
               break;
           }
         }

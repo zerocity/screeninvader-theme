@@ -8,6 +8,7 @@ var _ServerUrl        = 'http://localhost:5555/cgi-bin/get?/.',
       _getAll         = _BaseUrl + 'get?/.',
     _playItem         = _BaseUrl + 'playlist_jump?',
       _delItem        = _BaseUrl + 'playlist_remove?',
+  _toggleQueue        = _BaseUrl + 'set?/playlist/queue=',
       _addItem        = _BaseUrl + 'show?',
 
 _stepBackward         = _BaseUrl + 'trigger?playerPrevious',
@@ -19,57 +20,63 @@ _fastBackward         = _BaseUrl + 'trigger?playerRewindMore',
   _fastForward        = _BaseUrl + 'trigger?playerForwardMore',
   _stepForward        = _BaseUrl + 'trigger?playerNext',
 
+_browserClose         = _BaseUrl + 'trigger?browserClose',
+    _pdfClose         = _BaseUrl + 'trigger?pdfClose',
+
         service       = {},
         _model        = {},
         _INTERVAL     = 700,
         _JsonLastHash = '',
         _init         = true;
 
+
+    service.browserClose = function() {
+      $http.get(_browserClose);
+    }
+
+    service.pdfClose = function() {
+      $http.get(_pdfClose);
+    }
+
+    service.toggleQueue = function() {
+      var queueState;
+      if ($rootScope.model.playlist.queue === 'true') {
+        queueState = false
+      } else {
+        queueState = true
+      }
+      $http.get(_toggleQueue+queueState)
+    }
+
     service.pause = function() {
-      $http.get(_pause).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_pause);
     }
 
     service.stop = function() {
-      $http.get(_stop).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_stop);
     }
 
     service.stepForward = function() {
-      $http.get(_stepForward).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_stepForward);
     }
 
     service.stepBackward = function() {
-      $http.get(_stepBackward).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_stepBackward);
     }
 
     service.fastForward = function() {
-      $http.get(_fastForward).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_fastForward);
     }
 
     service.forward = function() {
-      $http.get(_forward).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_forward);
     }
 
     service.fastBackward = function() {
-      $http.get(_fastBackward).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_fastBackward);
     }
     service.backward = function() {
-      $http.get(_backward).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_backward);
     }
 
     service.createJsonMd5 = function(jsonObject) {
@@ -104,21 +111,15 @@ _fastBackward         = _BaseUrl + 'trigger?playerRewindMore',
     }
 
     service.playItem = function(key) {
-      $http.get(_playItem+key).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_playItem+key);
     }
 
     service.deleatItem = function(key) {
-      $http.get(_delItem+key).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_delItem+key);
     }
 
     service.addItem = function(source) {
-      $http.get(_addItem+source).then(function(res) {
-        console.log(res);
-      });
+      $http.get(_addItem+source);
     }
 
     return service
