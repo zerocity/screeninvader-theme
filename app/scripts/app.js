@@ -89,11 +89,7 @@ angular
         onEnter: function($stateParams, $state,$rootScope,JanoshDriver) {
 
           var showNotification = function(context) {
-
             var oldURL = location.href.split('#/')[1];
-            console.log(oldURL);
-            console.log($stateParams);
-
             var oldState = function() {
               if (oldURL === '') {
                 return 'app'
