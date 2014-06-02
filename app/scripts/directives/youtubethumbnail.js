@@ -3,7 +3,7 @@
 angular.module('09ScreeninvaderApp')
   .directive('youtubeThumbnail', function ($timeout) {
     return {
-      template: '<img className="media-item" ng-src={{youtubeUrl}} style={{cssStyle}}></img>',
+      template: '<img class="media-item" ng-src={{youtubeUrl}} style={{cssStyle}}></img>',
       scope : {
         youtubeThumbnailSrc: '=url'
       },

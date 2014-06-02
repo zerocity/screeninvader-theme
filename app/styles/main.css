@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .nopadding {
   padding: 0 !important;
   margin: 0 !important;
@@ -185,7 +187,7 @@ ul.menu {
 
 .pushRightSide {
   float: right;
-  margin-right: 20px;
+  margin-right: 5px;
 }
 
 .settings {
@@ -199,4 +201,75 @@ a:hover {
 
 .glyphicon {
   font-size: 1.4em;
+}
+
+footer ul li {
+  font-size: 0.6em;
+}
+
+dd,dt {
+  float: left;
+}
+
+dl{
+  margin-bottom: 0px;
+}
+
+
+.viewBig dd,
+.viewBig dt,
+.viewBig a {
+  line-height: 68px;
+}
+
+.viewSmall dd,
+.viewSmall dt,
+.viewSmall a {
+  line-height: 34px;
+}
+
+
+.viewThumb{
+  display: inline-block;
+}
+
+ul.viewThumb {
+  padding-left: 0px;
+}
+
+.viewThumb li,
+.viewThumb img{
+  float: left;
+  list-style: none;
+}
+
+.viewThumb img{
+  margin: 10px;
+}
+
+.viewThumb li.active{
+  border-radius: 3px;
+  border: 0px solid;
+  background-color: rgba(33,255,22,.2);
+  padding-right: 0px !important;
+}
+
+.viewThumb li.active:hover{
+  border: 0 none;
+  background-color: none;
+}
+
+.viewThumb li a:hover{
+  border: 0 none;
+  background-color: none;
+}
+
+hr {
+  clear: both;
+  border: 0 none;
+}
+
+.media-item{
+  margin-right: 15px;
+  margin-bottom: 2px;
 }

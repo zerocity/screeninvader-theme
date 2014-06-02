@@ -3,12 +3,13 @@
 angular.module('09ScreeninvaderApp')
   .factory('JanoshDriver', function ($http,$timeout,$rootScope,md5) {
 
-var _ServerUrl        = 'http://10.20.30.40/cgi-bin/get?/.',
-      _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
+var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
       _getAll         = _BaseUrl + 'get?/.',
     _playItem         = _BaseUrl + 'playlist_jump?',
       _delItem        = _BaseUrl + 'playlist_remove?',
   _toggleQueue        = _BaseUrl + 'set?/playlist/queue=',
+_setSound             = _BaseUrl + 'set?/sound/volume=',
+  _soundMute          = _BaseUrl + 'set?/sound/mute=',
       _addItem        = _BaseUrl + 'show?',
 
 _stepBackward         = _BaseUrl + 'trigger?playerPrevious',
@@ -29,6 +30,24 @@ _browserClose         = _BaseUrl + 'trigger?browserClose',
         _JsonLastHash = '',
         _init         = true;
 
+
+    service.setSoundPlus = function() {
+      if ($rootScope.model.sound.volume != 100) {
+        var v = parseInt($rootScope.model.sound.volume) + 15 ;
+        $http.get(_setSound+v)
+      }
+    }
+
+    service.setSoundMinus = function() {
+      var v = parseInt($rootScope.model.sound.volume) - 15 ;
+      $http.get(_setSound+v)
+    }
+
+    service.soundMute = function() {
+      var convert = ($rootScope.model.sound.mute === 'true') ? true : false; // janosh return a 'true' / 'false' string
+      console.log(_soundMute + !convert);
+      $http.get(_soundMute + !convert);
+    }
 
     service.browserClose = function() {
       $http.get(_browserClose);
@@ -93,15 +112,13 @@ _browserClose         = _BaseUrl + 'trigger?browserClose',
       $http.get(_getAll).
         success(function (data, status) {
 
+          // json caching
           var _hash = service.createJsonMd5(data);
-
           if (_hash != _JsonLastHash ) {
             $rootScope.model = data;
             _JsonLastHash = _hash;
           }
-
           $timeout(service.getJanoshData , _INTERVAL);
-
         }).
         error(function (data, status){
           console.log('error',data,status);

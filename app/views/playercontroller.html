@@ -26,14 +26,21 @@
              <i class="glyphicon glyphicon-step-forward"></i>
           </a>
 
+          <a ng-click="toggleSetting();">
+             <i class="pull-right glyphicon glyphicon-cog" ></i>
+          </a>
           <div class="pushRightSide">
-              <i ng-hide="playerSetting" class="glyphicon glyphicon-minus"></i>
-              <span ng-hide="playerSetting">100 %</span>
-              <i ng-hide="playerSetting" class="glyphicon glyphicon-plus"></i>
-              <i ng-hide="playerSetting" class="glyphicon glyphicon-volume-off setYellow"></i>
-              <a ng-click="toggleSetting();">
-                 <i class="pull-right glyphicon glyphicon-cog" ></i>
-              </a>
+            <a ng-hide="playerSetting" ui-sref="app.playerControll({type: 'volumedown'})">
+               <i class="glyphicon glyphicon-minus"></i>
+            </a>
+            <span ng-hide="playerSetting"> {{model.sound.volume}} % </span>
+            <a ng-hide="playerSetting" ui-sref="app.playerControll({type: 'volumeup'})">
+               <i class="glyphicon glyphicon-plus"></i>
+            </a>
+
+            <a ng-hide="playerSetting" ui-sref="app.playerControll({type: 'mute'})">
+              <i ng-hide="playerSetting" class="glyphicon glyphicon-volume-off" ng-class="{setYellow: model.sound.mute == 'true' }"></i>
+            </a>
           </div>
 
 

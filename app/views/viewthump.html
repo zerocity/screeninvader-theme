@@ -1,11 +1,9 @@
 <div class="box">
-  <div class="row">
-    <div ng-repeat="item in model.playlist.items">
-      <div class="col-xs-1 col-md-1">
-        <a ui-sref="app.action({ type: 'play',id:$index })" ng-class="{activeItem: $index==model.playlist.index}" class="title" title="play" >
+  <ul class="viewThumb">
+    <li ng-repeat="item in model.playlist.items" ng-class="{active: $index==model.playlist.index}">
+        <a ui-sref="app.action({ type: 'play',id:$index })" title="{{item.title}}"  class="title" title="play">
           <youtube-Thumbnail  url="item.source" size='64' /></youtube-Thumbnail>
         </a>
-      </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>

@@ -1,17 +1,20 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .controller('YoutubesearchCtrl', function ($scope,$http) {
+  .controller('YoutubesearchCtrl', function ($scope,$http,$timeout,JanoshDriver) {
 
+  $scope.getUrl = function(key) {
+    $('#'+key).toggleClass('hide').focus();
+  };
 
-  var youtubeAPI = function(query) {
-    var max_videos = 12;
+  $scope.youtubeAPI = function() {
+    var max_videos = 6;
     var parameters = {
       params: {
           type: 'video',
-          maxResults: max_videos,
+          'max-results':max_videos,
           alt:'json',
-          q: query
+          q: $scope.query
         }
       };
     var youtubeApiV3Url = 'https://www.googleapis.com/youtube/v3/search'; // require key parameter
@@ -40,5 +43,8 @@ angular.module('09ScreeninvaderApp')
         console.log(result);
       });
   };
-  youtubeAPI('daft punk');
+
+  $scope.postUrl = function() {
+    JanoshDriver.addItem($scope.postUrlQuery)
+  }
 });
