@@ -21,6 +21,16 @@ angular
          }
     };
 
+    var postUrlView = {
+         url:'posturl',
+         views:{
+               'content@':{
+                  controller:'YoutubesearchCtrl',
+                  templateUrl:'views/posturl.html'
+               }
+         }
+    };
+
     var viewList = {
          url:'list',
          views:{
@@ -79,6 +89,10 @@ angular
              'content':{
                 controller: 'MainCtrl',
                 templateUrl:'views/main.html'
+             },
+             'footer':{
+                controller : 'FooterCtrl',
+                templateUrl:'views/footer.html'
              }
           }
     };
@@ -204,6 +218,18 @@ angular
               JanoshDriver.playerClose();
               showNotification('playerClose');
               break;
+            case 'volumeup':
+              JanoshDriver.setSoundPlus();
+              showNotification('setSoundPlus');
+              break;
+            case 'volumedown':
+              JanoshDriver.setSoundMinus();
+              showNotification('setSoundMinus');
+              break;
+            case 'mute':
+              JanoshDriver.soundMute();
+              showNotification('soundMute');
+              break;
           }
         }
     };
@@ -211,6 +237,7 @@ angular
     $stateProvider
        .state('app',basicLayout)
        .state('app.search',youtubeSearchView)
+       .state('app.posturl',postUrlView)
        .state('app.action',itemActions)
        .state('app.playerControll',playerControll)
        .state('app.list',viewList)
