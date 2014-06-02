@@ -123,6 +123,7 @@ _browserClose         = _BaseUrl + 'trigger?browserClose',
     }
 
     service.addItem = function(source) {
+      console.log(source);
       $http.get(_addItem+source);
     }
 

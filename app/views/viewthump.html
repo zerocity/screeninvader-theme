@@ -2,7 +2,9 @@
   <div class="row">
     <div ng-repeat="item in model.playlist.items">
       <div class="col-xs-1 col-md-1">
-        <a > <youtube-Thumbnail  url="item.source" size='64' /></youtube-Thumbnail> </a>
+        <a ui-sref="app.action({ type: 'play',id:$index })" ng-class="{activeItem: $index==model.playlist.index}" class="title" title="play" >
+          <youtube-Thumbnail  url="item.source" size='64' /></youtube-Thumbnail>
+        </a>
       </div>
     </div>
   </div>

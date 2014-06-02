@@ -1,6 +1,6 @@
 <div class="box">
   <div class="row">
-      <div class=" col-xs-12 col-sm-6 col-md-4 pull-left">
+      <div class=" col-xs-12 col-sm-12 col-md-12 pull-left">
           <a ui-sref="app.playerControll({type: 'step-backward'})">
              <i class="glyphicon glyphicon-step-backward"></i>
           </a>
@@ -25,13 +25,17 @@
           <a ui-sref="app.playerControll({type: 'step-forward'})">
              <i class="glyphicon glyphicon-step-forward"></i>
           </a>
-            <i ng-hide="playerSetting" class="glyphicon glyphicon-minus"></i>
-            <span ng-hide="playerSetting">100 %</span>
-            <i ng-hide="playerSetting" class="glyphicon glyphicon-plus"></i>
-            <i ng-hide="playerSetting" class="glyphicon glyphicon-volume-off setYellow"></i>
-          <a ng-click="toggleSetting();">
-             <i class="pull-right glyphicon glyphicon-cog" ></i>
-          </a>
+
+          <div class="pushRightSide">
+              <i ng-hide="playerSetting" class="glyphicon glyphicon-minus"></i>
+              <span ng-hide="playerSetting">100 %</span>
+              <i ng-hide="playerSetting" class="glyphicon glyphicon-plus"></i>
+              <i ng-hide="playerSetting" class="glyphicon glyphicon-volume-off setYellow"></i>
+              <a ng-click="toggleSetting();">
+                 <i class="pull-right glyphicon glyphicon-cog" ></i>
+              </a>
+          </div>
+
 
       </div>
     </div>

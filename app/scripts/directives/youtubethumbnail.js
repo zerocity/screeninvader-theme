@@ -19,14 +19,11 @@ angular.module('09ScreeninvaderApp')
 
           if (typeof scope.youtubeThumbnailSrc === 'string') {
             var youtubeId = scope.youtubeThumbnailSrc.split('v=')[1].split('&')[0];// remove &
-            console.log('### ',youtubeId.split('&')[0]);
           } else {
             //playlist fix diffrent url
             var youtubeId = scope.youtubeThumbnailSrc.source.split('v=')[1].split('&#')[0];
           }
-
           scope.youtubeUrl = "http://img.youtube.com/vi/"+ youtubeId +"/default.jpg";
-          //console.log(scope.youtubeUrl);
         }
 
         $timeout(getYoutubesource,0)

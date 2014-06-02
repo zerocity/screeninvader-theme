@@ -1,1 +1,13 @@
-<p>This is the youtubeSearch view.</p>
+<div class="box">
+  <div class="row" ng-repeat="item in YoutubeResults" ngCloak>
+      <div class="col-xs-2 col-md-2">
+        <youtube-Thumbnail url="item.source" size='64' />
+      </div>
+      <div class="col-xs-10 col-md-10">
+        <a ui-sref="app.action({ type: 'add',id:item.source })" class="title"  title="add item to playlist" >
+           <i class="glyphicon glyphicon-plus playIcon" ></i> {{item.title}}
+        </a>
+      </div>
+
+  </div>
+</div>

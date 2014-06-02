@@ -183,6 +183,11 @@ ul.menu {
   margin-right: 20px;
 }
 
+.pushRightSide {
+  float: right;
+  margin-right: 20px;
+}
+
 .settings {
   display: inline;
 }

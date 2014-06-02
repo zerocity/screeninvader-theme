@@ -1,10 +1,19 @@
 <div class="box">
-  <ul class="menu">
-    <li class="menu">
-    <a ui-sref="app.search"><i class="glyphicon glyphicon-search"></i></a></li>
-    <li class="menu">
-      <a ui-sref="app.action({ type: 'del',id:1 })"><i class="glyphicon glyphicon-link"> </i></a></li>
-    <li class="menu">
-      <a ui-sref="app"><i class="glyphicon glyphicon-th-list" ></i><span > Playlist</span></a></li>
-  </ul>
+    <ul class="menu">
+        <li class="menu">
+            <a ui-sref="app" title="Playlist"><i class="glyphicon glyphicon-th-list" ></i>
+            <span > Playlist</span>
+            </a>
+        </li>
+        <li class="menu">
+            <a ui-sref="app.search" title="Youtube Search"><i class="glyphicon glyphicon-search"></i>
+            <span > Search</span>
+            </a>
+        </li>
+        <li class="menu">
+            <a ui-sref="app.search" title="Post a link"><i class="glyphicon glyphicon-link"> </i>
+            <span > Url</span>
+            </a>
+        </li>
+    </ul>
 </div>

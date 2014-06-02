@@ -10,10 +10,13 @@
       </div>
       <div class="itemControll">
           <a ui-sref="app.action({ type: 'del',id:$index })"><span class="glyphicon glyphicon-trash"></span> </a>
-          <a href="#" ng-click="getUrl($index +'_url')">url</a>
+          <a ng-click="getUrl($index +'_url')">url</a>
       </div>
       <div class="col-xs-10 col-md-10">
         <input id="{{$index + '_url'}}" class="hide form-control" type="text" value="{{item.source}}"></input>
       </div>
   </div>
+</div>
+<div class="box" ng-show="notify.context">
+  {{notify.context}}
 </div>

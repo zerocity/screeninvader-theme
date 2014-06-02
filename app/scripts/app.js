@@ -8,7 +8,6 @@ angular
     'ui.router'
   ])
   .config(function($stateProvider,$urlRouterProvider,$sceDelegateProvider) {
-    /*$sceDelegateProvider.resourceUrlWhitelist(['^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?\(vimeo|youtube)\.com(/.*)?$', 'self']);*/
 
     $urlRouterProvider.otherwise('/');
 
@@ -89,6 +88,10 @@ angular
         onEnter: function($stateParams, $state,$rootScope,JanoshDriver) {
 
           var showNotification = function(context) {
+
+            $rootScope.notify = {'context' : context, 'timestamp':Date.now()};
+
+            // back to last
             var oldURL = location.href.split('#/')[1];
             var oldState = function() {
               if (oldURL === '') {
@@ -97,24 +100,18 @@ angular
                 return 'app.' + oldURL
               }
             }
-
             return $state.go(oldState());
-
-        /*    Notifications
-              $timeout(function() {
-              $scope.isHidden = true;
-              if ($rootScope.previousState.name == '') {
-                $state.go('app');
-              } else {
-                $state.go($rootScope.previousState.name);
-              }
-            },1500);*/
           }
 
           switch($stateParams.type) {
             case 'del':
               if ($stateParams.id) {JanoshDriver.deleatItem($stateParams.id) }
               showNotification('Item will be deleated');
+              break;
+            case 'add':
+              //$stateParams.id is the youtube Source
+              if ($stateParams.id) {JanoshDriver.addItem($stateParams.id) }
+              showNotification('Item will be played');
               break;
             case 'play':
               if ($stateParams.id) {JanoshDriver.playItem($stateParams.id) }
@@ -137,6 +134,8 @@ angular
         onEnter: function($stateParams, $state,$rootScope,JanoshDriver) {
 
           var showNotification = function(context) {
+            $rootScope.notify = {'context' : context, 'timestamp':Date.now()};
+            // back to last
             var oldURL = location.href.split('#/')[1];
             var oldState = function() {
               if (oldURL === '') {
@@ -145,17 +144,7 @@ angular
                 return 'app.' + oldURL
               }
             }
-
             return $state.go(oldState());
-
-        /*    $timeout(function() {
-              $scope.isHidden = true;
-              if ($rootScope.previousState.name == '') {
-                $state.go('app');
-              } else {
-                $state.go($rootScope.previousState.name);
-              }
-            },1500);*/
           }
 
           switch($stateParams.type) {
@@ -212,7 +201,6 @@ angular
               showNotification('pdfClose');
               break;
             case 'playerClose':
-              console.log('test');
               JanoshDriver.playerClose();
               showNotification('playerClose');
               break;
@@ -228,16 +216,16 @@ angular
        .state('app.list',viewList)
        .state('app.small',viewSmall)
        .state('app.big',viewBig)
-       .state('app.thump',viewThump)
+       .state('app.thumb',viewThump)
   })
   .run(function(JanoshDriver,$timeout,$rootScope){
 
-    $rootScope.previousState = {};
+/*    $rootScope.previousState = {};
     $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
         // store previous state in $rootScope
         $rootScope.previousState.name = fromState.name;
         $rootScope.previousState.params = fromParams;
-    });
+    });*/
 
     $timeout(function() {
       JanoshDriver.getJanoshData();
