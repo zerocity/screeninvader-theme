@@ -3,8 +3,8 @@
 angular.module('09ScreeninvaderApp')
   .factory('JanoshDriver', function ($http,$timeout,$rootScope,md5) {
 
-var _ServerUrl        = 'http://localhost:5555/cgi-bin/get?/.',
-      _BaseUrl        = 'http://localhost:5555/cgi-bin/',
+var _ServerUrl        = 'http://10.20.30.40/cgi-bin/get?/.',
+      _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
       _getAll         = _BaseUrl + 'get?/.',
     _playItem         = _BaseUrl + 'playlist_jump?',
       _delItem        = _BaseUrl + 'playlist_remove?',
@@ -53,6 +53,10 @@ _browserClose         = _BaseUrl + 'trigger?browserClose',
     }
 
     service.stop = function() {
+      $http.get(_stop);
+    }
+
+    service.playerClose = function() {
       $http.get(_stop);
     }
 

@@ -100,7 +100,8 @@ angular
 
             return $state.go(oldState());
 
-        /*    $timeout(function() {
+        /*    Notifications
+              $timeout(function() {
               $scope.isHidden = true;
               if ($rootScope.previousState.name == '') {
                 $state.go('app');
@@ -211,6 +212,7 @@ angular
               showNotification('pdfClose');
               break;
             case 'playerClose':
+              console.log('test');
               JanoshDriver.playerClose();
               showNotification('playerClose');
               break;
