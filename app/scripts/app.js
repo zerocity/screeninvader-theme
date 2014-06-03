@@ -98,7 +98,7 @@ angular
     };
 
     var itemActions = {
-        url: "/action/:type/:id",
+        url: "action/:type/:id",
         onEnter: function($stateParams, $state,$rootScope,JanoshDriver) {
 
           var showNotification = function(context) {
