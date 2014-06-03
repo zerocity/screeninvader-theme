@@ -2,8 +2,9 @@
 
 angular.module('09ScreeninvaderApp')
   .factory('JanoshDriver', function ($http,$timeout,$rootScope,md5) {
-
-var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
+//_BaseUrl        = 'http://localhost:5555/cgi-bin/',
+// _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
+var   _BaseUrl        = 'http://localhost:5555/cgi-bin/',
       _getAll         = _BaseUrl + 'get?/.',
     _playItem         = _BaseUrl + 'playlist_jump?',
       _delItem        = _BaseUrl + 'playlist_remove?',
