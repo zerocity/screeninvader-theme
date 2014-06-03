@@ -61,15 +61,22 @@
   padding: 5px 0 5px 0;
 }
 
-.playMe {
-  cursor: pointer;
-}
+@media (max-width: 320px) {
+  .viewBig dd a.title {
+      float: left;
+      width:150px !important;
+      overflow:hidden;
+      height:30px !important;
+      margin-top: 20px;
+      line-height: 32px;
+   }
 
-@media (max-width: 768px) {
-  .playMe {
-    height: 25px;
-    overflow: hidden;
-  }
+  .viewSmall dd a.title {
+      float: left;
+      width:200px !important;
+      overflow:hidden;
+      height:34px !important;
+    }
 }
 
 .items a {
@@ -94,10 +101,6 @@ body {
   text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
   height: 100%;
   padding: 5px;
-}
-
-.label-green {
-  background-color: #41B436;
 }
 
 .remote-botton-fixed {
