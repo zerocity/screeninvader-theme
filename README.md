@@ -11,9 +11,9 @@ Screeninvader Web interface
 
 ## Starting VM with qemu
 
- -qemu-system-x86_64 -sdl -soundhw ac97 -sdl -enable-kvm -hda screeninvader_0.9.dd -net user,hostfwd=tcp::5555-:80,hostfwd=tcp::5556-:22 -net nic -m 256
- -sshfs -o sshfs_debug root@localhost:/ screeninvader -p 5556 // mount image 
-
+ - qemu-system-x86_64 -sdl -soundhw ac97 -sdl -enable-kvm -hda screeninvader_0.9.dd -net user,hostfwd=tcp::5555-:80,hostfwd=tcp::5556-:22 -net nic -m 256
+ - sshfs -o sshfs_debug root@localhost:/ screeninvader -p 5556 // mount image 
+ 
 # Client Side Development requirments
  - npm install -g yo 
  - Chang working directory to screeninvader-theme
