@@ -4,5 +4,13 @@
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" id="postUrlQuerySubmit" ng-click="postUrl()">Post</button>
       </span>
+    </div><hr>
+      <div class="btn btn-primary btn-upload"
+        upload-button url="cgi-bin/uploadstream"
+        accept="{{acceptTypes}}"
+        on-upload="onUpload(files)"
+        on-error="onError(response)"
+        on-success="onSuccess(response)"
+        on-complete="onComplete(response)">Upload</div>
     </div>
 </div>
