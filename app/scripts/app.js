@@ -5,7 +5,8 @@ angular
     'ngResource',
     'ngSanitize',
     'angular-md5',
-    'ui.router'
+    'ui.router',
+    'lr.upload'
   ])
   .config(function($stateProvider,$urlRouterProvider,$sceDelegateProvider) {
 
