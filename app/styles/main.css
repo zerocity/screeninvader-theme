@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.btn {
+  display: block !important;
+}
+
 .nopadding {
   padding: 0 !important;
   margin: 0 !important;
