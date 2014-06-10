@@ -6,9 +6,11 @@ angular
     'ngSanitize',
     'angular-md5',
     'ui.router',
-    'lr.upload'
+    'lr.upload',
   ])
-  .config(function($stateProvider,$urlRouterProvider,$sceDelegateProvider) {
+  .config(function($httpProvider,$stateProvider,$urlRouterProvider,$sceDelegateProvider) {
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $httpProvider.defaults.useXDomain = true;
 
     $urlRouterProvider.otherwise('/');
 
