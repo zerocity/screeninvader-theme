@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .controller('PlayercontrollerCtrl', function ($scope,$rootScope) {
+  .controller('PlayercontrollerCtrl', function ($scope,$rootScope,JanoshDriver) {
 
     //############## Default settings ##############
     $scope.playerSetting = true;
@@ -14,5 +14,8 @@ angular.module('09ScreeninvaderApp')
       $scope.model = $rootScope.model;
     });
 
+    $scope.updateSound = function(vol) {
+      JanoshDriver.setSound(vol)
+    }
 
 });

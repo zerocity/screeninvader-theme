@@ -9,7 +9,7 @@ var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
     _playItem         = _BaseUrl + 'playlist_jump?',
       _delItem        = _BaseUrl + 'playlist_remove?',
   _toggleQueue        = _BaseUrl + 'set?/playlist/queue=',
-_setSound             = _BaseUrl + 'set?/sound/volume=',
+    _setSound         = _BaseUrl + 'set?/sound/volume=',
   _soundMute          = _BaseUrl + 'set?/sound/mute=',
       _addItem        = _BaseUrl + 'show?',
 
@@ -37,6 +37,11 @@ _browserClose         = _BaseUrl + 'trigger?browserClose',
         var v = parseInt($rootScope.model.sound.volume) + 15 ;
         $http.get(_setSound+v)
       }
+    }
+
+    service.setSound = function(vol) {
+      var v = parseInt(vol);
+      $http.get(_setSound+v)
     }
 
     service.setSoundMinus = function() {

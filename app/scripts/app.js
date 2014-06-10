@@ -7,6 +7,7 @@ angular
     'angular-md5',
     'ui.router',
     'lr.upload',
+    'xeditable'
   ])
   .config(function($httpProvider,$stateProvider,$urlRouterProvider,$sceDelegateProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -248,8 +249,11 @@ angular
        .state('app.big',viewBig)
        .state('app.thumb',viewThump)
   })
-  .run(function(JanoshDriver,$timeout,$rootScope){
+  .run(function(JanoshDriver,$timeout,$rootScope,editableOptions,editableThemes){
 
+  editableOptions.theme = 'bs3';
+  editableThemes.bs3.inputClass = 'input-xs pushRightSide';
+  editableThemes.bs3.buttonsClass = 'btn-xs pushRightSide';
 /*    $rootScope.previousState = {};
     $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
         // store previous state in $rootScope
