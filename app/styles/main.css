@@ -169,6 +169,9 @@ ul.menu {
 
 .title {
   margin: 0;
+  border-radius: 3px;
+  border: 1px solid #1E1E1E;
+  color: #a0a0a0;
 }
 
 .title i.playIcon {
@@ -202,7 +205,7 @@ ul.menu {
 }
 
 a:hover {
-  text-decoration: none;
+ text-decoration: none;
   color: #FF9C39;
 }
 
@@ -279,4 +282,73 @@ hr {
 .media-item{
   margin-right: 15px;
   margin-bottom: 2px;
+}
+
+/*youtube search css*/
+
+.search {
+  width:89%;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 0px 0px 0px 64px;
+}
+
+.result {
+  padding: 5px;
+}
+
+.result .name {
+  font-weight: bold;
+  margin-right: 5px;
+}
+.result .description {
+  font-size: 12px;
+  color: #a0a0a0;
+}
+.result .actors,
+.result .description,
+.result .title {
+  margin-left: 13px;
+  display: block;
+  white-space: nowrap;
+  width: 99%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.result .actors {
+  font-size: 10px;
+  color: #a0a0a0;
+}
+.result .actors span {
+  color: #606060;
+}
+.result img {
+  height: 60px;
+  height: 52px;
+  left: 13px;
+  position: absolute;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.04);
+}
+
+.result::before {
+  -moz-transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  content: ' ';
+  z-index: 2;
+  position: absolute;
+  display: block;
+  top: 50%;
+  right: 34px;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 0;
+  background: url(../images/logo.png);
+  background-size: 16px 16px;
+  opacity: 0;
+}
+.result.loading::before {
+  opacity: 0.4;
 }
