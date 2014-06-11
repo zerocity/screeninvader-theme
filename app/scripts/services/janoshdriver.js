@@ -5,31 +5,31 @@ angular.module('09ScreeninvaderApp')
 //_BaseUrl        = 'http://localhost:5555/cgi-bin/',
 // _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
 var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
-      _getAll         = _BaseUrl + 'get?/.',
-    _playItem         = _BaseUrl + 'playlist_jump?',
-      _delItem        = _BaseUrl + 'playlist_remove?',
-  _toggleQueue        = _BaseUrl + 'set?/playlist/queue=',
-    _setSound         = _BaseUrl + 'set?/sound/volume=',
-  _soundMute          = _BaseUrl + 'set?/sound/mute=',
-      _addItem        = _BaseUrl + 'show?',
+        _getAll         = _BaseUrl + 'get?/.',
+      _playItem         = _BaseUrl + 'playlist_jump?',
+        _delItem        = _BaseUrl + 'playlist_remove?',
+    _toggleQueue        = _BaseUrl + 'set?/playlist/queue=',
+      _setSound         = _BaseUrl + 'set?/sound/volume=',
+    _soundMute          = _BaseUrl + 'set?/sound/mute=',
+        _addItem        = _BaseUrl + 'show?',
+  _stepBackward         = _BaseUrl + 'trigger?playerPrevious',
+  _fastBackward         = _BaseUrl + 'trigger?playerRewindMore',
+      _backward         = _BaseUrl + 'trigger?playerRewind',
+          _stop         = _BaseUrl + 'trigger?playerClose',
+        _pause          = _BaseUrl + 'trigger?playerPause',
+        _forward        = _BaseUrl + 'trigger?playerForward',
+    _fastForward        = _BaseUrl + 'trigger?playerForwardMore',
+    _stepForward        = _BaseUrl + 'trigger?playerNext',
+  _browserClose         = _BaseUrl + 'trigger?browserClose',
+       _pdfClose        = _BaseUrl + 'trigger?pdfClose',
+  _playlistClear        = _BaseUrl + 'playlist_clear',
 
-_stepBackward         = _BaseUrl + 'trigger?playerPrevious',
-_fastBackward         = _BaseUrl + 'trigger?playerRewindMore',
-    _backward         = _BaseUrl + 'trigger?playerRewind',
-        _stop         = _BaseUrl + 'trigger?playerClose',
-      _pause          = _BaseUrl + 'trigger?playerPause',
-      _forward        = _BaseUrl + 'trigger?playerForward',
-  _fastForward        = _BaseUrl + 'trigger?playerForwardMore',
-  _stepForward        = _BaseUrl + 'trigger?playerNext',
 
-_browserClose         = _BaseUrl + 'trigger?browserClose',
-    _pdfClose         = _BaseUrl + 'trigger?pdfClose',
-
-        service       = {},
-        _model        = {},
-        _INTERVAL     = 700,
-        _JsonLastHash = '',
-        _init         = true;
+          service       = {},
+          _model        = {},
+          _INTERVAL     = 700,
+          _JsonLastHash = '',
+          _init         = true;
 
 
     service.setSoundPlus = function() {
@@ -42,6 +42,10 @@ _browserClose         = _BaseUrl + 'trigger?browserClose',
     service.setSound = function(vol) {
       var v = parseInt(vol);
       $http.get(_setSound+v)
+    }
+
+    service.playlistClear = function() {
+      $http.get(_playlistClear);
     }
 
     service.setSoundMinus = function() {

@@ -1,4 +1,5 @@
 <div class="box">
+  <div ng-show="!model.playlist.items.length">No Items :( </div>
   <div class="row" ng-repeat="item in model.playlist.items">
       <div class="col-xs-10 col-md-10">
         <a ui-sref="app.action({ type: 'play',id:$index })" ng-class="{activeItem: $index==model.playlist.index}" class="title" title="play" >

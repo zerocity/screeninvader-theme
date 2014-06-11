@@ -166,6 +166,9 @@ angular
           }
 
           switch($stateParams.type) {
+            case 'playlist-clear':
+              JanoshDriver.playlistClear();
+              showNotification('Playlist Cleared');
             case 'del':
               if ($stateParams.id) {JanoshDriver.deleatItem($stateParams.id) }
               showNotification('Item will be deleated');
@@ -250,10 +253,9 @@ angular
        .state('app.thumb',viewThump)
   })
   .run(function(JanoshDriver,$timeout,$rootScope,editableOptions,editableThemes){
-
-  editableOptions.theme = 'bs3';
-  editableThemes.bs3.inputClass = 'input-xs pushRightSide';
-  editableThemes.bs3.buttonsClass = 'btn-xs pushRightSide';
+    editableOptions.theme = 'bs3';
+    editableThemes.bs3.inputClass = 'input-xs pushRightSide';
+    editableThemes.bs3.buttonsClass = 'btn-xs pushRightSide';
 /*    $rootScope.previousState = {};
     $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
         // store previous state in $rootScope

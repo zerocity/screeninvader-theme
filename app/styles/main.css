@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.fa {
+  font-size: 1.6em;
+}
+
 .btn {
   display: block !important;
 }
