@@ -1,11 +1,17 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .factory('JanoshDriver', function ($http,$timeout,$rootScope,md5) {
+  .factory('JanoshDriver', function ($http,$timeout,$rootScope,$firebase,md5,$parse) {
+
+
+  var ref = new Firebase("https://brilliant-fire-7900.firebaseio.com");
+  var sync = $firebase(ref);
+
 //_BaseUrl        = 'http://localhost:5555/cgi-bin/',
 // _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
-var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
+  var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
         _getAll         = _BaseUrl + 'get?/.',
+        _getHash  = _BaseUrl +'hash',
       _playItem         = _BaseUrl + 'playlist_jump?',
         _delItem        = _BaseUrl + 'playlist_remove?',
     _toggleQueue        = _BaseUrl + 'set?/playlist/queue=',
@@ -22,15 +28,25 @@ var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
     _stepForward        = _BaseUrl + 'trigger?playerNext',
   _browserClose         = _BaseUrl + 'trigger?browserClose',
        _pdfClose        = _BaseUrl + 'trigger?pdfClose',
+       _getIp        = _BaseUrl + 'getip',
   _playlistClear        = _BaseUrl + 'playlist_clear',
 
 
           service       = {},
           _model        = {},
-          _INTERVAL     = 700,
+          _INTERVAL     = 1000,
           _JsonLastHash = '',
+          _lastHash = '123123',
           _init         = true;
 
+
+  function extractTitle(text) {
+    var m = /<title>(.*)<\/title>/.exec(text);
+    if (m && m[1]) {
+      return m[1].replace(/<\/?title>/g," ").replace(/\s+/," ");
+    }
+    return; // returns undefined
+  }
 
     service.setSoundPlus = function() {
       if ($rootScope.model.sound.volume != 100) {
@@ -118,17 +134,37 @@ var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
         return hash;
     }
 
+    service.getip = function() {
+      $http.get(_getIp).success(function(data,status){
+        if (status == 200) {
+          $rootScope.serverIp = data
+          console.log(data)
+        };
+      });
+    };
+
+    service.checkForUpdate = function(){
+      $http.get(_getHash).
+        success(function (data,status){
+          if (data != $rootScope.lastHash) {
+            console.log('UPDATE ',$rootScope.lastHash,data)
+            $rootScope.lastHash = data
+            service.getJanoshData();
+          };
+        });
+        $timeout(service.checkForUpdate , _INTERVAL);
+    }
+
     service.getJanoshData = function() {
       $http.get(_getAll).
         success(function (data, status) {
-
           // json caching
           var _hash = service.createJsonMd5(data);
           if (_hash != _JsonLastHash ) {
             $rootScope.model = data;
             _JsonLastHash = _hash;
           }
-          $timeout(service.getJanoshData , _INTERVAL);
+          //$timeout(service.getJanoshData , _INTERVAL);
         }).
         error(function (data, status){
           console.log('error',data,status);
@@ -138,7 +174,10 @@ var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
 
     if (_init){
       _init = false;
-      service.getJanoshData();
+      $rootScope.lastHash ='123';
+      service.getip();
+      service.checkForUpdate();
+      //service.getJanoshData();
     }
 
     service.playItem = function(key) {
@@ -151,6 +190,19 @@ var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
 
     service.addItem = function(source) {
       console.log(source);
+
+      var getPage = $http.get(source);
+      getPage.success(function (data, status, headers, config) {
+          if (status === 200) {
+            var getTitle = extractTitle(data);
+            var setTime = Math.round(new Date().getTime() / 1000)
+            sync.$push({date:setTime, title:getTitle, urls:source});
+          };
+
+      }).error(function(res) {
+          console.log(res);
+      })
+
       $http.get(_addItem+source);
     }
 

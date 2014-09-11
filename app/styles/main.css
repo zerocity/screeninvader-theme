@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+.loading {
+  background-image:url('../images/logo.png');
+/*  background-position:50% 20px;
+  background-repeat:no-repeat;*/
+}
+
 .fa {
   font-size: 1.6em;
 }

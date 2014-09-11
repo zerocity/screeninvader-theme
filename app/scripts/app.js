@@ -7,8 +7,13 @@ angular
     'angular-md5',
     'ui.router',
     'lr.upload',
-    'xeditable'
-  ])
+    'xeditable',
+    'firebase',
+    'cgBusy',
+    'angularMoment'
+  ]).constant('angularMomentConfig', {
+    preprocess: 'unix' // optional
+  })
   .config(function($httpProvider,$stateProvider,$urlRouterProvider,$sceDelegateProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.useXDomain = true;
@@ -21,6 +26,16 @@ angular
                'content@':{
                   controller:'YoutubesearchCtrl',
                   templateUrl:'views/youtubesearch.html'
+               }
+         }
+    };
+
+    var historyView = {
+         url:'history',
+         views:{
+               'content@':{
+                  controller:'HistoryCtrl',
+                  templateUrl:'views/history.html'
                }
          }
     };
@@ -251,6 +266,7 @@ angular
        .state('app.small',viewSmall)
        .state('app.big',viewBig)
        .state('app.thumb',viewThump)
+       .state('app.history',historyView)
   })
   .run(function(JanoshDriver,$timeout,$rootScope,editableOptions,editableThemes){
     editableOptions.theme = 'bs3';
@@ -264,7 +280,7 @@ angular
     });*/
 
     $timeout(function() {
-      JanoshDriver.getJanoshData();
+      //JanoshDriver.getJanoshData();
       console.log('run');
     },0);
 
