@@ -195,7 +195,7 @@ angular.module('09ScreeninvaderApp')
       getPage.success(function (data, status, headers, config) {
           if (status === 200) {
             var getTitle = extractTitle(data);
-            var setTime = Math.round(new Date().getTime() / 1000)
+            var setTime = Math.round(new Date().getTime() / 1000).toString();
             sync.$push({date:setTime, title:getTitle, urls:source});
           };
 

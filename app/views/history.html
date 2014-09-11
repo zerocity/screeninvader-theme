@@ -12,13 +12,11 @@
 
   <table class="">
     <tr>
-      <th>ID</th>
       <th style="width: 115px;"><a href="" ng-click="reverse=!reverse;order('date',reverse)">Date </a></th>
-      <th><a href="" ng-click="reverse=false;order('title', false)">Title</a> (<a href="" ng-click="order('-title',false)">^</a>)</th>
+      <th><a href="" ng-click="reverse=!reverse;order('title',reverse)">Title</a></th>
     </tr>
-    <tr ng-repeat="(key,item) in history | orderBy:predicate:reverse ">
-      <td>{{ key }} </td>
-      <td>{{item.date | amDateFormat:'DD.MM.YYYY' }} </td>
+    <tr ng-repeat="item in history">
+      <td>{{item.date | amDateFormat:'DD.MM.YYYY' }}</td>
       <td><a href="{{item.urls}}">{{item.title}}</a></td>
     </tr>
   </table>
