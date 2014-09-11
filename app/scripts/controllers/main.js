@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .controller('MainCtrl', function ($scope,JanoshDriver,$rootScope,$timeout) {
+  .controller('MainCtrl', function ($scope,JanoshDriver,$rootScope) {
 
-    $rootScope.$watch('model',function(data) {
+/*    $rootScope.$watch('model',function(data) {
       $scope.model = $rootScope.model;
     });
-
+*/
     $rootScope.$watch('notify',function(data) {
       if (typeof $scope.notify !== 'undefined') {
         if ($scope.notify.timestamp !== $rootScope.notify.timestamp) {
@@ -15,7 +15,6 @@ angular.module('09ScreeninvaderApp')
           $scope.notify = $rootScope.notify;
           // after 3 sec the context message is reset
           console.log('test');
-
         }
       }
     });

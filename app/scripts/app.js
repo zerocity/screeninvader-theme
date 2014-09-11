@@ -10,6 +10,7 @@ angular
     'xeditable',
     'firebase',
     'cgBusy',
+    'angular.filter',
     'angularMoment'
   ]).constant('angularMomentConfig', {
     preprocess: 'unix' // optional
@@ -280,7 +281,6 @@ angular
     });*/
 
     $timeout(function() {
-      //JanoshDriver.getJanoshData();
       console.log('run');
     },0);
 
