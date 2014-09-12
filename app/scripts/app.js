@@ -273,6 +273,7 @@ angular
     editableOptions.theme = 'bs3';
     editableThemes.bs3.inputClass = 'input-xs pushRightSide';
     editableThemes.bs3.buttonsClass = 'btn-xs pushRightSide';
+    $rootScope.toggleMenuSize = 0;
 /*    $rootScope.previousState = {};
     $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
         // store previous state in $rootScope

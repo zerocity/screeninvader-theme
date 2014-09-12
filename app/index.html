@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-btn">
-                            <button type="button" class="btn btn-default collapsed-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <button type="button" ng-click="toggleMenu()" class="btn btn-default collapsed-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                 <img src="../images/logo.png" height="17" width="22" alt="">
                             </button>
                         </div>
@@ -78,7 +78,7 @@
 
         <div ng-hide="YoutubeResults | isEmpty" class="box" ngCloak>
             <a href="#">
-                <span ng-click="clearSearch()">clear Search</span>
+                <button type="button" i ng-click="clearSearch()" class="btn btn-default btn-xs">clear Search</button>
             </a>
             <div class="search">
                 <div class="result" ng-repeat="item in YoutubeResults">

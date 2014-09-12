@@ -55,6 +55,13 @@
   padding-right: 3px;
 }
 
+.box-NoScroll {
+  margin-top: 5px;
+  border: 1px solid #7E7E7E;
+  border-radius: 3px;
+  padding: 5px;
+}
+
 .box {
   margin-top: 5px;
   border: 1px solid #7E7E7E;
@@ -112,6 +119,7 @@ body {
   color: #7E7E7E;
   background: #1E1E1E;
   overflow-x: hidden;
+  overflow-y: hidden;
   text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
   height: 100%;
   padding: 5px;
@@ -201,7 +209,7 @@ ul.menu {
 
 .itemControll {
   float: right;
-  margin-right: 30px;
+  margin-right: 33px;
 }
 
 .pushRightSide {

@@ -1,4 +1,4 @@
-<div class="box" ng-style="style(80)" resize>
+<div class="box" ng-style="style(80+toggleMenuSize)" resize>
   <div ng-show="!model.playlist.items.length">No Items :( </div>
   <div class="row" ng-repeat="item in model.playlist.items.slice().reverse()" ngCloak>
       <div class="col-xs-10 col-md-10">

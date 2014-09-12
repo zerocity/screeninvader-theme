@@ -1,9 +1,19 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .controller('YoutubesearchCtrl', function ($scope,$http,$timeout,JanoshDriver,Youtubeapi) {
+  .controller('YoutubesearchCtrl', function ($scope,$http,$timeout,JanoshDriver,Youtubeapi,$rootScope) {
 
   $scope.YoutubeResults = {};
+
+  $scope.toggleMenu = function(){
+    var heigth = 108;
+    //push box up in to the view
+    if ($rootScope.toggleMenuSize !=heigth){
+      $rootScope.toggleMenuSize = heigth;
+    }else{
+      $rootScope.toggleMenuSize = 0;
+    }
+  }
 
   $scope.clearSearch = function () {
     $scope.query ='';
