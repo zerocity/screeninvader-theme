@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 .loading {
-  background-image:url('../images/logo.png');
-/*  background-position:50% 20px;
+  background-image: url('../images/logo.png');
+  /*  background-position:50% 20px;
   background-repeat:no-repeat;*/
 }
 
@@ -10,10 +10,6 @@
   font-size: 1.6em;
 }
 
-/*.btn {
-  display: block !important;
-}
-*/
 .nopadding {
   padding: 0 !important;
   margin: 0 !important;
@@ -26,7 +22,6 @@
 }
 
 .videoController .glyphicon {
-
   font-size: 22px;
   width: 25px;
 }
@@ -65,6 +60,11 @@
   border: 1px solid #7E7E7E;
   border-radius: 3px;
   padding: 5px;
+  overflow:hidden;
+}
+
+.box:hover{
+  overflow-y:scroll;
 }
 
 .setYellow {
@@ -77,20 +77,20 @@
 
 @media (max-width: 320px) {
   .viewBig dd a.title {
-      float: left;
-      width:150px !important;
-      overflow:hidden;
-      height:30px !important;
-      margin-top: 20px;
-      line-height: 32px;
-   }
+    float: left;
+    width: 150px !important;
+    overflow: hidden;
+    height: 30px !important;
+    margin-top: 20px;
+    line-height: 32px;
+  }
 
   .viewSmall dd a.title {
-      float: left;
-      width:200px !important;
-      overflow:hidden;
-      height:34px !important;
-    }
+    float: left;
+    width: 200px !important;
+    overflow: hidden;
+    height: 34px !important;
+  }
 }
 
 .items a {
@@ -189,7 +189,6 @@ ul.menu {
 }
 
 .title:hover i.playIcon {
-  display: inline;
   font-size: 1em;
 }
 
@@ -202,7 +201,7 @@ ul.menu {
 
 .itemControll {
   float: right;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 .pushRightSide {
@@ -215,7 +214,7 @@ ul.menu {
 }
 
 a:hover {
- text-decoration: none;
+  text-decoration: none;
   color: #FF9C39;
 }
 
@@ -227,14 +226,14 @@ footer ul li {
   font-size: 0.6em;
 }
 
-dd,dt {
+dd,
+dt {
   float: left;
 }
 
-dl{
+dl {
   margin-bottom: 0px;
 }
-
 
 .viewBig dd,
 .viewBig dt,
@@ -248,8 +247,7 @@ dl{
   line-height: 34px;
 }
 
-
-.viewThumb{
+.viewThumb {
   display: inline-block;
 }
 
@@ -258,28 +256,28 @@ ul.viewThumb {
 }
 
 .viewThumb li,
-.viewThumb img{
+.viewThumb img {
   float: left;
   list-style: none;
 }
 
-.viewThumb img{
+.viewThumb img {
   margin: 10px;
 }
 
-.viewThumb li.active{
+.viewThumb li.active {
   border-radius: 3px;
   border: 0px solid;
   background-color: rgba(33,255,22,.2);
   padding-right: 0px !important;
 }
 
-.viewThumb li.active:hover{
+.viewThumb li.active:hover {
   border: 0 none;
   background-color: none;
 }
 
-.viewThumb li a:hover{
+.viewThumb li a:hover {
   border: 0 none;
   background-color: none;
 }
@@ -289,7 +287,7 @@ hr {
   border: 0 none;
 }
 
-.media-item{
+.media-item {
   margin-right: 15px;
   margin-bottom: 2px;
 }
@@ -297,9 +295,9 @@ hr {
 /*youtube search css*/
 
 .search {
-  width:89%;
+  width: 89%;
   border-bottom: 1px solid rgba(0,0,0,0.05);
-  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   padding: 0px 0px 0px 64px;
 }
@@ -312,10 +310,12 @@ hr {
   font-weight: bold;
   margin-right: 5px;
 }
+
 .result .description {
   font-size: 12px;
   color: #a0a0a0;
 }
+
 .result .actors,
 .result .description,
 .result .title {
@@ -326,13 +326,16 @@ hr {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .result .actors {
   font-size: 10px;
   color: #a0a0a0;
 }
+
 .result .actors span {
   color: #606060;
 }
+
 .result img {
   height: 60px;
   height: 52px;
@@ -343,8 +346,6 @@ hr {
 }
 
 .result::before {
-  -moz-transition: opacity 0.2s;
-  -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
   content: ' ';
   z-index: 2;
@@ -359,6 +360,7 @@ hr {
   background-size: 16px 16px;
   opacity: 0;
 }
+
 .result.loading::before {
   opacity: 0.4;
 }
