@@ -3,7 +3,12 @@
 angular.module('09ScreeninvaderApp')
   .controller('YoutubesearchCtrl', function ($scope,$http,$timeout,JanoshDriver,Youtubeapi) {
 
-  $scope.YoutubeResults = {}
+  $scope.YoutubeResults = {};
+
+  $scope.clearSearch = function () {
+    $scope.query ='';
+    $scope.YoutubeResults = {};
+  }
 
   $scope.getUrl = function(key) {
     $('#'+key).toggleClass('hide').focus();

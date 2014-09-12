@@ -26,11 +26,64 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
+    <!-- Add your site or application content here-->
+<header ng-controller="YoutubesearchCtrl">
+<nav >
+      <form class="form-inline" role="form">
+      <div class="form-group" >
+          <div class="input-group">
+              <div class="input-group-btn">
+                  <button type="button" class="btn btn-default collapsed-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <img src="../images/logo.png" height="18" width="22" alt="">
+                  </button>
+              </div>
+
+              <input type="search" keyboard-poster post-function="searchYoutube" ng-model="query" class="form-control" id="youtubeSearch" placeholder="Youtube Search and url post">
+
+              <div class="input-group-btn">
+                  <button type="button" class="btn btn-default " id="postUrlQuerySubmit" ng-click="searchYoutube(query)" >GO</button>
+              </div>
+              <!-- /btn-group -->
+          </div>
+          <!-- /input-group -->
+      </div>
+      </form>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse" id="bs-example-navbar-collapse-1">
+           <div id="playerController" ui-view="playerController"></div>
+           <div id="controller" ui-view="viewController"></div>
+        </div>
+  </nav>
+
+<div ng-hide="YoutubeResults | isEmpty"class="box">
+      <a href="#"><span ng-click="clearSearch()">clear Search</span></a>
+      <div class="search">
+        <div class="result" ng-repeat="item in YoutubeResults">
+            <img ng-src="{{item.thumbnail}}" alt="" />
+                <a ui-sref="app.action({ type: 'add',id:item.source })" class="name title" title="add item to playlist">
+                    <i class="glyphicon glyphicon-plus playIcon"></i> {{item.title}}
+                </a>
+            <span class="description">{{item.description}} &nbsp;</span>
+            <span class="actors">Author
+                <span>{{item.author}}</span>,
+                <span>Duration: {{item.duration }} sec</span>,
+                <a href="{{item.source}}">go to source</a>, &nbsp;
+                <a ng-click="getUrl($index +'_url')">url</a>
+            </span>
+
+            <input id="{{$index + '_url'}}" class="hide form-control" type="text" value="{{item.source}}" >
+        </div>
+    </div>
+</div>
+
+</header>
+
+
+
    <header ui-view="topBar"></header>
+
    <div id="notify" ui-view="notify"></div>
-   <div id="playerController" ui-view="playerController"></div>
-   <div id="controller" ui-view="viewController"></div>
+
    <div id="main" ui-view="content" ></div>
    <footer ui-view="footer" ></footer>
 
