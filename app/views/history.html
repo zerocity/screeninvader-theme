@@ -1,5 +1,5 @@
 <div class="box" style="min-height: 150px;">
-  <div cg-busy="{promise:historyPro, message:'loading', backdrop:false, templateUrl:'/views/loading.html'}"></div>
+  <div cg-busy="{promise:historyPro, message:'loading', backdrop:false, templateUrl:'/theme/views/loading.html'}"></div>
   <span>BUG : The first click on Date dont 't work .... ' </span>
   <table>
     <tr>
@@ -7,7 +7,7 @@
       <th><a href="" ng-click="reverse=!reverse;order('title',reverse)">Invade</a></th>
       <th><a href="" ng-click="reverse=!reverse;order('title',reverse)">Title</a></th>
     </tr>
-    <tr ng-repeat="item in history">
+    <tr ng-repeat="item in history" ngCloak>
       <td style="padding-right: 15px;" > {{item.date | amDateFormat:'DD.MM.YYYY' }}</td>
       <td style="padding-right: 15px;" >  <a href="" ng-click="postUrl(item.urls)" alt="post to playlist" title="post to playlist"> Queue</a> </td>
       <td style="padding-right: 15px;" >  <a href="{{item.urls}}" alt="go to link" title="go to link">{{item.title}}</a></td>

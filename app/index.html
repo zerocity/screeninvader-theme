@@ -76,7 +76,7 @@
             </div>
         </nav>
 
-        <div ng-hide="YoutubeResults | isEmpty" class="box">
+        <div ng-hide="YoutubeResults | isEmpty" class="box" ngCloak>
             <a href="#">
                 <span ng-click="clearSearch()">clear Search</span>
             </a>
@@ -153,6 +153,7 @@
     <script src="scripts/controllers/footer.js"></script>
     <script src="scripts/services/youtubeapi.js"></script>
     <script src="scripts/directives/keyboardposter.js"></script>
+    <script src="scripts/directives/resize.js"></script>
     <script src="scripts/controllers/history.js"></script>
     <!-- endbuild -->
 </body>
