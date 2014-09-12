@@ -166,7 +166,6 @@ ul.menu {
 }
 
 .activeItem {
-  color: #41B436;
   padding-right: 5px;
   list-style: none;
   display: inline;
@@ -174,6 +173,7 @@ ul.menu {
 
 .activeItem.title i.playIcon {
   display: inline;
+  color: #41B436;
   font-size: 1em;
 }
 

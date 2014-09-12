@@ -1,25 +1,16 @@
-<div class="box">
-
-<!--   <li ng-repeat="item in history" class="list-unstyled">
-  <a href="{{item.urls}}"><span class="pushRightSide">url</span></a>
-    {{item.date | amDateFormat:'DD.MM.YYYY' }} {{item.title}}
-  </li> -->
-<!--
-<pre>{{history | json }}</pre>
- -->
-
+<div class="box" style="min-height: 150px;">
   <div cg-busy="{promise:historyPro, message:'loading', backdrop:false, templateUrl:'/views/loading.html'}"></div>
-
-  <table class="">
+  <span>BUG : The first click on Date dont 't work .... ' </span>
+  <table>
     <tr>
-      <th style="width: 115px;"><a href="" ng-click="reverse=!reverse;order('date',reverse)">Date </a></th>
+      <th style="padding-right: 15px;"><a href="" ng-click="reverse=!reverse;order('date',reverse)">Date </a></th>
+      <th><a href="" ng-click="reverse=!reverse;order('title',reverse)">Invade</a></th>
       <th><a href="" ng-click="reverse=!reverse;order('title',reverse)">Title</a></th>
     </tr>
     <tr ng-repeat="item in history">
-      <td>{{item.date | amDateFormat:'DD.MM.YYYY' }}</td>
-      <td><a href="{{item.urls}}">{{item.title}}</a></td>
+      <td style="padding-right: 15px;" > {{item.date | amDateFormat:'DD.MM.YYYY' }}</td>
+      <td style="padding-right: 15px;" >  <a href="" ng-click="postUrl(item.urls)" alt="post to playlist" title="post to playlist"> Queue</a> </td>
+      <td style="padding-right: 15px;" >  <a href="{{item.urls}}" alt="go to link" title="go to link">{{item.title}}</a></td>
     </tr>
   </table>
-  <div id="buttom"></div>
-
 </div>
