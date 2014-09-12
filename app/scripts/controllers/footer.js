@@ -6,6 +6,7 @@ angular.module('09ScreeninvaderApp')
       $scope.gotoTop = function() {
         $location.hash('top');
         $anchorScroll();
+        $location.hash('');
       }
 
 });
