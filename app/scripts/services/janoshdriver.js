@@ -137,8 +137,7 @@ angular.module('09ScreeninvaderApp')
     service.getip = function() {
       $http.get(_getIp).success(function(data,status){
         if (status == 200) {
-          $rootScope.serverIp = data
-          console.log(data)
+          $rootScope.serverIp = data;
         };
       });
     };
@@ -147,7 +146,7 @@ angular.module('09ScreeninvaderApp')
       $http.get(_getHash).
         success(function (data,status){
           if (data != $rootScope.lastHash) {
-            console.log('UPDATE ',$rootScope.lastHash,data)
+            console.log('UPDATE',' OLD HASH',$rootScope.lastHash,'NEW HASH',data)
             $rootScope.lastHash = data
             service.getJanoshData();
           };
@@ -161,6 +160,15 @@ angular.module('09ScreeninvaderApp')
           // json caching
           var _hash = service.createJsonMd5(data);
           if (_hash != _JsonLastHash ) {
+
+            // append a 'uniq' ID
+            var i = 0;
+            var modifiedData = _.each(data.playlist.items,function(res){
+              _.extend(res, {id: i});
+                i  += 1;
+            });
+            data.playlist.items = modifiedData;
+
             $rootScope.model = data;
             _JsonLastHash = _hash;
           }

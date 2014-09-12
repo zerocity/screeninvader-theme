@@ -3,11 +3,9 @@
 angular.module('09ScreeninvaderApp')
   .controller('MainCtrl', function ($scope,JanoshDriver,$rootScope) {
 
-/*    $rootScope.$watch('model',function(data) {
-      $scope.model = $rootScope.model;
-    });
-*/
-    $rootScope.$watch('notify',function(data) {
+/*     bugggg fix me
+
+  $rootScope.$watch('notify',function(data) {
       if (typeof $scope.notify !== 'undefined') {
         if ($scope.notify.timestamp !== $rootScope.notify.timestamp) {
         console.log($scope.notify);
@@ -17,7 +15,7 @@ angular.module('09ScreeninvaderApp')
           console.log('test');
         }
       }
-    });
+    });*/
 
     $scope.getUrl = function(key) {
       $('#'+key).toggleClass('hide').focus();

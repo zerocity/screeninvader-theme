@@ -2,8 +2,11 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
@@ -20,72 +23,87 @@
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
-  <body ng-app="09ScreeninvaderApp" class="content">
+</head>
+
+<body ng-app="09ScreeninvaderApp" class="content">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here-->
-<header ng-controller="YoutubesearchCtrl">
-<nav >
-      <form class="form-inline" role="form">
-      <div class="form-group" >
-          <div class="input-group">
-              <div class="input-group-btn">
-                  <button type="button" class="btn btn-default collapsed-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                      <img src="../images/logo.png" height="18" width="22" alt="">
-                  </button>
-              </div>
+    <header ng-controller="YoutubesearchCtrl">
+        <nav>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default collapsed-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <img src="../images/logo.png" height="17" width="22" alt="">
+                            </button>
+                        </div>
 
-              <input type="search" keyboard-poster post-function="searchYoutube" ng-model="query" class="form-control" id="youtubeSearch" placeholder="Youtube Search and url post">
+                        <input type="search" keyboard-poster post-function="searchYoutube" ng-model="query" class="form-control" id="youtubeSearch" placeholder="Youtube Search and url post">
 
-              <div class="input-group-btn">
-                  <button type="button" class="btn btn-default " id="postUrlQuerySubmit" ng-click="searchYoutube(query)" >GO</button>
-              </div>
-              <!-- /btn-group -->
-          </div>
-          <!-- /input-group -->
-      </div>
-      </form>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse" id="bs-example-navbar-collapse-1">
-           <div id="playerController" ui-view="playerController"></div>
-           <div id="controller" ui-view="viewController"></div>
-        </div>
-  </nav>
-
-<div ng-hide="YoutubeResults | isEmpty"class="box">
-      <a href="#"><span ng-click="clearSearch()">clear Search</span></a>
-      <div class="search">
-        <div class="result" ng-repeat="item in YoutubeResults">
-            <img ng-src="{{item.thumbnail}}" alt="" />
-                <a ui-sref="app.action({ type: 'add',id:item.source })" class="name title" title="add item to playlist">
-                    <i class="glyphicon glyphicon-plus playIcon"></i> {{item.title}}
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default " id="postUrlQuerySubmit" ng-click="searchYoutube(query)">GO</button>
+                        </div>
+                        <!-- /btn-group -->
+                    </div>
+                    <!-- /input-group -->
+                </div>
+            </form>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse" id="bs-example-navbar-collapse-1">
+                <div id="playerController" ui-view="playerController"></div>
+                <div id="controller" ui-view="viewController"></div>
+                <a ui-sref="app" title="Playlist">
+                    <span>Playlist |</span>
                 </a>
-            <span class="description">{{item.description}} &nbsp;</span>
-            <span class="actors">Author
-                <span>{{item.author}}</span>,
-                <span>Duration: {{item.duration }} sec</span>,
-                <a href="{{item.source}}">go to source</a>, &nbsp;
-                <a ng-click="getUrl($index +'_url')">url</a>
-            </span>
+                <a ui-sref="app.search" title="Youtube Search">
+                    <span>Search |</span>
+                </a>
+                <a ui-sref="app.history" title="Post a link">
+                    <span>History |</span>
+                </a>
+                <a ui-sref="app.posturl" title="Post a link">
+                    <span>Url</span>
+                </a>
+            </div>
+        </nav>
 
-            <input id="{{$index + '_url'}}" class="hide form-control" type="text" value="{{item.source}}" >
+        <div ng-hide="YoutubeResults | isEmpty" class="box">
+            <a href="#">
+                <span ng-click="clearSearch()">clear Search</span>
+            </a>
+            <div class="search">
+                <div class="result" ng-repeat="item in YoutubeResults">
+                    <img ng-src="{{item.thumbnail}}" alt="" />
+                    <a ui-sref="app.action({ type: 'add',id:item.source })" class="name title" title="add item to playlist">
+                        <i class="glyphicon glyphicon-plus playIcon"></i> {{item.title}}
+                    </a>
+                    <span class="description">{{item.description}} &nbsp;</span>
+                    <span class="actors">Author
+                        <span>{{item.author}}</span>,
+                        <span>Duration: {{item.duration }} sec</span>,
+                        <a href="{{item.source}}">go to source</a>, &nbsp;
+                        <a ng-click="getUrl($index +'_url')">url</a>
+                    </span>
+
+                    <input id="{{$index + '_url'}}" class="hide form-control" type="text" value="{{item.source}}">
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-</header>
+    </header>
 
 
 
-   <header ui-view="topBar"></header>
+    <header ui-view="topBar"></header>
 
-   <div id="notify" ui-view="notify"></div>
+    <div id="notify" ui-view="notify"></div>
 
-   <div id="main" ui-view="content" ></div>
-   <footer ui-view="footer" ></footer>
+    <div id="main" ui-view="content"></div>
+    <footer ui-view="footer"></footer>
 
 
     <!--[if lt IE 9]>
@@ -117,20 +135,21 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/services/janoshdriver.js"></script>
-        <script src="scripts/controllers/youtubesearch.js"></script>
-        <script src="scripts/controllers/notify.js"></script>
-        <script src="scripts/controllers/videocontroller.js"></script>
-        <script src="scripts/directives/youtubethumbnail.js"></script>
-        <script src="scripts/controllers/playercontroller.js"></script>
-        <script src="scripts/directives/back-button.js"></script>
-        <script src="scripts/controllers/footer.js"></script>
-        <script src="scripts/services/youtubeapi.js"></script>
-        <script src="scripts/directives/keyboardposter.js"></script>
-        <script src="scripts/controllers/history.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/services/janoshdriver.js"></script>
+    <script src="scripts/controllers/youtubesearch.js"></script>
+    <script src="scripts/controllers/notify.js"></script>
+    <script src="scripts/controllers/videocontroller.js"></script>
+    <script src="scripts/directives/youtubethumbnail.js"></script>
+    <script src="scripts/controllers/playercontroller.js"></script>
+    <script src="scripts/directives/back-button.js"></script>
+    <script src="scripts/controllers/footer.js"></script>
+    <script src="scripts/services/youtubeapi.js"></script>
+    <script src="scripts/directives/keyboardposter.js"></script>
+    <script src="scripts/controllers/history.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>

@@ -3,7 +3,7 @@
 angular.module('09ScreeninvaderApp')
   .controller('HistoryCtrl', function ($scope,$firebase,$filter,$parse) {
     var ref = new Firebase("https://brilliant-fire-7900.firebaseio.com");
-    var sync = $firebase(ref.limit(50));
+    var sync = $firebase(ref);
     $scope.historyPro =  sync.$asArray();
     var orderBy = $filter('orderBy');
 
