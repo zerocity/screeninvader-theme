@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .factory('JanoshDriver', function ($http,$timeout,$rootScope,$firebase,md5,$parse) {
+  .factory('JanoshDriver', function ($http,$timeout,$rootScope,$firebase,md5,Youtubeapi) {
 
 
   var ref = new Firebase("https://brilliant-fire-7900.firebaseio.com");
@@ -199,17 +199,10 @@ angular.module('09ScreeninvaderApp')
     service.addItem = function(source) {
       console.log(source);
 
-      var getPage = $http.get(source);
-      getPage.success(function (data, status, headers, config) {
-          if (status === 200) {
-            var getTitle = extractTitle(data);
+      Youtubeapi.searchYoutube(source).then(function (result){
             var setTime = Math.round(new Date().getTime() / 1000).toString();
-            sync.$push({date:setTime, title:getTitle, urls:source});
-          };
-
-      }).error(function(res) {
-          console.log(res);
-      })
+            sync.$push({date:setTime, title:result[0].title, urls:source});
+      });
 
       $http.get(_addItem+source);
     }
