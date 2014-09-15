@@ -2,9 +2,6 @@
 
 angular
   .module('09ScreeninvaderApp', [
-    'ngResource',
-    'ngSanitize',
-    'angular-md5',
     'ui.router',
     'lr.upload',
     'xeditable',

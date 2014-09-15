@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4" >
             <div class="pull-left">
-                <a ui-sref="app.playerControll({type: 'queue' })" title="stop queue mode" ng-class="{active: model.playlist.queue == 'true' }" class="fag fag-refresh"></a>
+                <a ui-sref="app.playerControll({type: 'queue' })" title="stop queue mode" ng-class="{active: model.playlist.queue == 'true' }" class="fa fa-refresh"></a>
                 <a title="close Image" ui-sref="app.playerControll({type: 'browserClose' })" ui-sref="app.playerControll({type: 'queue' })" ng-class="{active: model.image.active == 'true' }" class="fa fa-picture-o"></a>
                 <a title="close Browser" ui-sref="app.playerControll({type: 'browserClose' })" ng-class="{active: model.browser.active == 'true' }" class="fa fa-globe"></a>
                 <a title="close player" ui-sref="app.playerControll({type: 'playerClose' })" ng-class="{active: model.player.active == 'true' }" class="fa fa-play remotePanel"></a>

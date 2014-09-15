@@ -13,9 +13,9 @@
     <meta name="viewport" content="width=device-width , user-scalable=no">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
     <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
     <link rel="stylesheet" href="bower_components/angular-notify/dist/angular-notify.css" />
@@ -26,14 +26,14 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="09ScreeninvaderApp" class="content">
+<body ng-app="09ScreeninvaderApp" class="content" ng-cloak>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here-->
       <a id="top"></a>
-    <header ng-controller="YoutubesearchCtrl" ng-cloak>
+    <header ng-controller="YoutubesearchCtrl">
         <nav>
             <form class="form-inline" role="form">
                 <div class="form-group">
@@ -79,7 +79,7 @@
                 <button type="button" i ng-click="clearSearch()" class="btn btn-default btn-xs">Back (reset Youtube Search)</button>
             </a>
             <div class="search">
-                <div class="result" ng-repeat="item in YoutubeResults">
+                <div class="result" ng-repeat="item in YoutubeResults" ng-cloak>
                     <img ng-src="{{item.thumbnail}}" alt="" />
                     <a ui-sref="app.action({ type: 'add',id:item.source })" class="name title" title="add item to playlist">
                         <i class="glyphicon glyphicon-plus playIcon"></i> {{item.title}}
@@ -99,7 +99,6 @@
     </header>
 
     <header ui-view="topBar"></header>
-    <div id="notify" ui-view="notify"></div>
     <div id="main" ui-view="content"></div>
     <footer ui-view="footer"></footer>
 
@@ -113,10 +112,7 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-md5/angular-md5.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/angular-upload/angular-upload.js"></script>
     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
@@ -138,7 +134,6 @@
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/services/janoshdriver.js"></script>
     <script src="scripts/controllers/youtubesearch.js"></script>
-    <script src="scripts/controllers/notify.js"></script>
     <script src="scripts/controllers/videocontroller.js"></script>
     <script src="scripts/directives/youtubethumbnail.js"></script>
     <script src="scripts/controllers/playercontroller.js"></script>

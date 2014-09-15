@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .factory('JanoshDriver', function ($http,$timeout,$rootScope,$firebase,md5,Youtubeapi,notify) {
+  .factory('JanoshDriver', function ($http,$timeout,$rootScope,$firebase,Youtubeapi,notify) {
 
 
   var ref = new Firebase("https://brilliant-fire-7900.firebaseio.com");
@@ -137,12 +137,6 @@ angular.module('09ScreeninvaderApp')
       $http.get(_backward);
     }
 
-    service.createJsonMd5 = function(jsonObject) {
-        var stringifiedCandidate = JSON.stringify(jsonObject);
-        var hash = md5.createHash(stringifiedCandidate);
-        return hash;
-    }
-
     service.getip = function() {
       $http.get(_getIp).success(function(data,status){
         if (status == 200) {
@@ -168,10 +162,6 @@ angular.module('09ScreeninvaderApp')
     service.getJanoshData = function() {
       $http.get(_getAll).
         success(function (data, status) {
-          // json caching
-          var _hash = service.createJsonMd5(data);
-          if (_hash != _JsonLastHash ) {
-
             // append a 'uniq' ID
             var i = 0;
             var modifiedData = _.each(data.playlist.items,function(res){
@@ -179,15 +169,10 @@ angular.module('09ScreeninvaderApp')
                 i  += 1;
             });
             data.playlist.items = modifiedData;
-
             $rootScope.model = data;
-            _JsonLastHash = _hash;
-          }
-          //$timeout(service.getJanoshData , _INTERVAL);
-        }).
+          }).
         error(function (data, status){
           console.log('error',data,status);
-          //service.getJanoshData();
         });
     };
 
@@ -200,13 +185,15 @@ angular.module('09ScreeninvaderApp')
     }
 
     service.playItem = function(key) {
-      notify('Play item ' + key )
       $http.get(_playItem+key);
+      var cc = parseInt(key) +1
+      notify('Play item ' + cc)
     }
 
     service.deleatItem = function(key) {
-      notify('Item ' + key + ' will be deleated')
+      var cc = parseInt(key) +1
       $http.get(_delItem+key);
+      notify('Item ' +cc  + ' will be deleated')
     }
 
     service.addItem = function(source) {
