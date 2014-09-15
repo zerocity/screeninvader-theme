@@ -1,6 +1,6 @@
 <div class="box" ng-style="style(80+toggleMenuSize)" resize>
   <ul class="viewThumb">
-    <li ng-repeat="item in model.playlist.items.slice().reverse()" ng-class="{active: item.id==model.playlist.index}" ngCloak>
+    <li ng-repeat="item in model.playlist.items" ng-class="{active: item.id==model.playlist.index}" ngCloak>
         <a ui-sref="app.action({ type: 'play',id:item.id })" title="{{item.title}}"  class="title" title="play">
           <youtube-Thumbnail  url="item.source" size='64' /></youtube-Thumbnail>
         </a>

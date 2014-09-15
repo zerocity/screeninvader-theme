@@ -36,14 +36,14 @@
         <nav>
             <form class="form-inline" role="form">
                 <div class="form-group">
-                    <div class="input-group">
+                    <div class="input-group input-group-lg">
                         <div class="input-group-btn">
                             <button type="button" ng-click="toggleMenu()" class="btn btn-default collapsed-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <img src="../images/logo.png" height="17" width="22" alt="">
+                            <i class="fa fa-caret-square-o-down" style="font-size: 1.3em;" ></i>
                             </button>
                         </div>
 
-                        <input type="search" keyboard-poster post-function="searchYoutube" ng-model="query" class="form-control" id="youtubeSearch" placeholder="Youtube Search">
+                        <input type="search" keyboard-poster post-function="searchYoutube" ng-model="query" class="form-control " id="youtubeSearch" placeholder="Youtube Search">
 
                         <div class="input-group-btn">
                             <button type="button" class="btn btn-default " id="postUrlQuerySubmit" ng-click="searchYoutube(query)">GO</button>
@@ -57,17 +57,14 @@
             <div class="collapse" id="bs-example-navbar-collapse-1">
                 <div id="playerController" ui-view="playerController"></div>
                 <div id="controller" ui-view="viewController"></div>
-                <a ui-sref="app" title="Playlist">
-                    <span>Playlist |</span>
+                <a ui-sref="app.posturl" title="Post a link">
+                    <span>Url | </span>
                 </a>
                 <a ui-sref="app.search" title="Youtube Search">
                     <span>Search |</span>
                 </a>
                 <a ui-sref="app.history" title="Post a link">
                     <span>History |</span>
-                </a>
-                <a ui-sref="app.posturl" title="Post a link">
-                    <span>Url | </span>
                 </a>
               <a ng-href="http://10.20.30.90/"> <i class="fa fa-gamepad"></i> Slackomatic</a>
               <a ng-href="https://github.com/zerocity/screeninvader-theme/issues"><i class="fa fa-bug"></i> Bugs</a>
@@ -76,9 +73,9 @@
             </div>
         </nav>
 
-        <div ng-hide="YoutubeResults | isEmpty" class="box" ngCloak>
+        <div ng-hide="YoutubeResults | isEmpty" style="display: none" class="box" ngCloak>
             <a href="#">
-                <button type="button" i ng-click="clearSearch()" class="btn btn-default btn-xs">clear Search</button>
+                <button type="button" i ng-click="clearSearch()" class="btn btn-default btn-xs">Back (reset Youtube Search)</button>
             </a>
             <div class="search">
                 <div class="result" ng-repeat="item in YoutubeResults">
@@ -98,18 +95,12 @@
                 </div>
             </div>
         </div>
-
     </header>
 
-
-
     <header ui-view="topBar"></header>
-
     <div id="notify" ui-view="notify"></div>
-
     <div id="main" ui-view="content"></div>
     <footer ui-view="footer"></footer>
-
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>

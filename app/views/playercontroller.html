@@ -1,35 +1,32 @@
 <div class="box-NoScroll">
     <div class="row">
-        <div class=" col-xs-12 col-sm-12 col-md-12 pull-left">
+        <div class=" col-xs-12 col-sm-12 col-md-12 pull-left player-controller">
             <a ui-sref="app.playerControll({type: 'step-backward'})">
-                <i class="glyphicon glyphicon-step-backward"></i>
+                <i class="fa fa-step-backward"></i>
             </a>
             <a ui-sref="app.playerControll({type: 'fast-backward'})">
-                <i class="glyphicon glyphicon-fast-backward"></i>
+                <i class="fa fa-fast-backward"></i>
             </a>
             <a ui-sref="app.playerControll({type: 'backward'})">
-                <i class="glyphicon glyphicon-backward"></i>
+                <i class="fa fa-backward"></i>
             </a>
             <a ui-sref="app.playerControll({type: 'stop'})">
-                <i class="glyphicon glyphicon-stop"></i>
+                <i class="fa fa-stop"></i>
             </a>
             <a ui-sref="app.playerControll({type: 'pause'})">
-                <i class="glyphicon glyphicon-pause"></i>
+                <i class="fa fa-pause"></i>
             </a>
             <a ui-sref="app.playerControll({type: 'forward'})">
-                <i class="glyphicon glyphicon-forward"></i>
+                <i class="fa fa-forward"></i>
             </a>
             <a ui-sref="app.playerControll({type: 'fast-forward'})">
-                <i class="glyphicon glyphicon-fast-forward"></i>
+                <i class="fa fa-fast-forward"></i>
             </a>
             <a ui-sref="app.playerControll({type: 'step-forward'})">
-                <i class="glyphicon glyphicon-step-forward"></i>
+                <i class="fa fa-step-forward"></i>
             </a>
             <a ui-sref="app.playerControll({type: 'playlist-clear'})" title="Clear Playlist">
-                <i class="fa fa-times-circle"></i>
-            </a>
-            <a ng-click="toggleSetting();">
-                <i class="pull-right glyphicon glyphicon-cog"></i>
+                <i class="fa fa-trash"></i>
             </a>
             <div class="pushRightSide">
                 <div>vol: <a href="#" editable-range="model.sound.volume" e-step="5" onbeforesave="updateSound($data)">

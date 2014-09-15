@@ -1,6 +1,6 @@
 <div class="box" ng-style="style(80+toggleMenuSize)" resize>
     <dl class="viewBig">
-        <dt  ng-repeat-start="item in model.playlist.items.slice().reverse()" ngCloak>
+        <dt  ng-repeat-start="item in model.playlist.items" ngCloak>
             <youtube-Thumbnail url="item.source" size='64' />
         </dt>
         <dd>
