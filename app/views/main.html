@@ -1,4 +1,4 @@
-<div class="box" ng-style="style(90+toggleMenuSize)" resize>
+<div class="box" ng-style="style(90+toggleMenuSize)" resize autoscroll-down>
   <div ng-show="!model.playlist.items.length">
     <h1>Connecting to Screeninvader ... ...</h1>
   </div>
@@ -16,4 +16,5 @@
         <input id="{{item.id + '_url'}}" class="hide form-control" type="text" value="{{item.source}}"></input>
       </div>
   </div>
+<!-- <div id="lastItem" ng-repeat-end>end</div> -->
 </div>

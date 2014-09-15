@@ -32,7 +32,7 @@
 
     <!-- Add your site or application content here-->
       <a id="top"></a>
-    <header ng-controller="YoutubesearchCtrl">
+    <header ng-controller="YoutubesearchCtrl" ngCloak>
         <nav>
             <form class="form-inline" role="form">
                 <div class="form-group">
@@ -73,7 +73,7 @@
             </div>
         </nav>
 
-        <div ng-hide="YoutubeResults | isEmpty" style="display: none" class="box" ngCloak>
+        <div ng-hide="YoutubeResults | isEmpty" style="display: none" class="box" >
             <a href="#">
                 <button type="button" i ng-click="clearSearch()" class="btn btn-default btn-xs">Back (reset Youtube Search)</button>
             </a>
