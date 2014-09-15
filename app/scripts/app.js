@@ -9,6 +9,7 @@ angular
     'lr.upload',
     'xeditable',
     'firebase',
+    'cgNotify',
     'cgBusy',
     'angular.filter',
     'angularMoment'
@@ -121,10 +122,7 @@ angular
         url: "action/:type/:id",
         onEnter: function($stateParams, $state,$rootScope,JanoshDriver) {
 
-          var showNotification = function(context) {
-
-            $rootScope.notify = {'context' : context, 'timestamp':Date.now()};
-
+           var resetUrl = function() {
             // back to last
             var oldURL = location.href.split('#/')[1];
             var oldState = function() {
@@ -140,24 +138,24 @@ angular
           switch($stateParams.type) {
             case 'del':
               if ($stateParams.id) {JanoshDriver.deleatItem($stateParams.id) }
-              showNotification('Item will be deleated');
+              resetUrl();
               break;
             case 'add':
               //$stateParams.id is the youtube Source
               if ($stateParams.id) {JanoshDriver.addItem($stateParams.id) }
-              showNotification('Item will be played');
+              resetUrl();
               break;
             case 'play':
               if ($stateParams.id) {JanoshDriver.playItem($stateParams.id) }
-              showNotification('Item will be played');
+              resetUrl();
               break;
             case 'stop':
               JanoshDriver.stop()
-              showNotification('stop');
+              resetUrl();
               break;
             case 'pause':
               JanoshDriver.pause();
-              showNotification('pause');
+              resetUrl();
               break;
            }
         }
@@ -167,8 +165,7 @@ angular
         url:'controll/:type',
         onEnter: function($stateParams, $state,$rootScope,JanoshDriver) {
 
-          var showNotification = function(context) {
-            $rootScope.notify = {'context' : context, 'timestamp':Date.now()};
+           var resetUrl = function() {
             // back to last
             var oldURL = location.href.split('#/')[1];
             var oldState = function() {
@@ -184,74 +181,75 @@ angular
           switch($stateParams.type) {
             case 'playlist-clear':
               JanoshDriver.playlistClear();
-              showNotification('Playlist Cleared');
+              resetUrl();
+              break;
             case 'del':
               if ($stateParams.id) {JanoshDriver.deleatItem($stateParams.id) }
-              showNotification('Item will be deleated');
+              resetUrl();
               break;
             case 'play':
               if ($stateParams.id) {JanoshDriver.playItem($stateParams.id) }
-              showNotification('Item will be played');
+              resetUrl();
               break;
             case 'step-backward':
               JanoshDriver.stepBackward();
-              showNotification('step-backward');
+              resetUrl();
               break;
             case 'fast-backward':
               JanoshDriver.fastBackward();
-              showNotification('fast-backward');
+              resetUrl();
               break;
             case 'backward':
               JanoshDriver.backward();
-              showNotification('backward');
+              resetUrl();
               break;
             case 'stop':
               JanoshDriver.stop();
-              showNotification('stop');
+              resetUrl();
               break;
             case 'pause':
-              JanoshDriver.pause();;
-              showNotification('pause');
+              JanoshDriver.pause();
+              resetUrl();
               break;
             case 'forward':
               JanoshDriver.forward();
-              showNotification('forward');
+              resetUrl();
               break;
             case 'fast-forward':
               JanoshDriver.fastForward();
-              showNotification('fast-forward');
+              resetUrl();
               break;
             case 'step-forward':
               JanoshDriver.stepForward();
-              showNotification('step-forward');
+              resetUrl();
               break;
             case 'queue':
               JanoshDriver.toggleQueue();
-              showNotification('queue');
+              resetUrl();
               break;
             case 'browserClose':
               JanoshDriver.browserClose();
-              showNotification('browserClose');
+              resetUrl();
               break;
             case 'pdfClose':
               JanoshDriver.pdfClose();
-              showNotification('pdfClose');
+              resetUrl();
               break;
             case 'playerClose':
-              JanoshDriver.playerClose();
-              showNotification('playerClose');
+              notify('playerClose');
+              resetUrl();
               break;
             case 'volumeup':
-              JanoshDriver.setSoundPlus();
-              showNotification('setSoundPlus');
+              notify('setSoundPlus');
+              resetUrl();
               break;
             case 'volumedown':
-              JanoshDriver.setSoundMinus();
-              showNotification('setSoundMinus');
+              notify('setSoundMinus');
+              resetUrl();
               break;
             case 'mute':
-              JanoshDriver.soundMute();
-              showNotification('soundMute');
+              notify('soundMute');
+              resetUrl();
               break;
           }
         }

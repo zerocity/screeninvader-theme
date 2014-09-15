@@ -3,7 +3,7 @@
 angular.module('09ScreeninvaderApp')
   .service('Youtubeapi', function Youtubeapi($q, $http) {
     var API_URL = 'http://gdata.youtube.com/feeds/api/videos';
-    var max_videos = 12;
+    var max_videos = 8;
 
     this.searchYoutube = function(term) {
       var parameters = {

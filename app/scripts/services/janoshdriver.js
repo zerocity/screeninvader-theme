@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .factory('JanoshDriver', function ($http,$timeout,$rootScope,$firebase,md5,Youtubeapi) {
+  .factory('JanoshDriver', function ($http,$timeout,$rootScope,$firebase,md5,Youtubeapi,notify) {
 
 
   var ref = new Firebase("https://brilliant-fire-7900.firebaseio.com");
@@ -62,6 +62,7 @@ angular.module('09ScreeninvaderApp')
 
     service.playlistClear = function() {
       $http.get(_playlistClear);
+      notify('Playlist Cleared');
     }
 
     service.setSoundMinus = function() {
@@ -73,36 +74,44 @@ angular.module('09ScreeninvaderApp')
       var convert = ($rootScope.model.sound.mute === 'true') ? true : false; // janosh return a 'true' / 'false' string
       console.log(_soundMute + !convert);
       $http.get(_soundMute + !convert);
+      notify('Mute');
     }
 
     service.browserClose = function() {
       $http.get(_browserClose);
+      notify('Browser will be closed soon');
     }
 
     service.pdfClose = function() {
       $http.get(_pdfClose);
+      notify('PDF will be closed soon');
     }
 
     service.toggleQueue = function() {
       var queueState;
       if ($rootScope.model.playlist.queue === 'true') {
         queueState = false
+        notify('Queue OFF');
       } else {
         queueState = true
+        notify('Queue ON');
       }
       $http.get(_toggleQueue+queueState)
     }
 
     service.pause = function() {
       $http.get(_pause);
+      notify('Player Pause');
     }
 
     service.stop = function() {
       $http.get(_stop);
+      notify('Player Stoped');
     }
 
     service.playerClose = function() {
       $http.get(_stop);
+      notify('Player Stoped');
     }
 
     service.stepForward = function() {
@@ -150,6 +159,8 @@ angular.module('09ScreeninvaderApp')
             $rootScope.lastHash = data
             service.getJanoshData();
           };
+        }).error(function(data,status){
+          notify("Can't connect to Screeninvader ");
         });
         $timeout(service.checkForUpdate , _INTERVAL);
     }
@@ -189,21 +200,21 @@ angular.module('09ScreeninvaderApp')
     }
 
     service.playItem = function(key) {
+      notify('Play item ' + key )
       $http.get(_playItem+key);
     }
 
     service.deleatItem = function(key) {
+      notify('Item ' + key + ' will be deleated')
       $http.get(_delItem+key);
     }
 
     service.addItem = function(source) {
-      console.log(source);
-
       Youtubeapi.searchYoutube(source).then(function (result){
             var setTime = Math.round(new Date().getTime() / 1000).toString();
             sync.$push({date:setTime, title:result[0].title, urls:source});
       });
-
+      notify('New Item added');
       $http.get(_addItem+source);
     }
 

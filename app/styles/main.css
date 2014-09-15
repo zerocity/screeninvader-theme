@@ -67,11 +67,11 @@
   border: 1px solid #7E7E7E;
   border-radius: 3px;
   padding: 5px;
-  overflow:hidden;
+  overflow-y:scroll;
+  overflow-x:hidden;
 }
 
 .box:hover{
-  overflow-y:scroll;
 }
 
 .setYellow {
