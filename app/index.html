@@ -36,11 +36,10 @@
     <header ng-controller="YoutubesearchCtrl">
         <nav>
             <form class="form-inline" role="form">
-                <div class="form-group">
                     <div class="input-group input-group-lg">
                         <div class="input-group-btn">
-                            <button type="button" ng-click="toggleMenu()" class="btn btn-default collapsed-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <i class="fa fa-caret-square-o-down" style="font-size: 1.3em;" ></i>
+                            <button type="button" ng-click="toggleMenu()" class="btn btn-default">
+                                <i class="fa fa-caret-square-o-down" style="font-size: 1.3em;" ></i>
                             </button>
                         </div>
 
@@ -52,25 +51,11 @@
                         <!-- /btn-group -->
                     </div>
                     <!-- /input-group -->
-                </div>
             </form>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse" id="bs-example-navbar-collapse-1">
+            <div ng-show="showMenu">
                 <div id="playerController" ui-view="playerController"></div>
                 <div id="controller" ui-view="viewController"></div>
-                <a ui-sref="app.posturl" title="Post a link">
-                    <span>Url | </span>
-                </a>
-                <a ui-sref="app.search" title="Youtube Search">
-                    <span>Search |</span>
-                </a>
-                <a ui-sref="app.history" title="Post a link">
-                    <span>History |</span>
-                </a>
-              <a ng-href="http://10.20.30.90/"> <i class="fa fa-gamepad"></i> Slackomatic</a>
-              <a ng-href="https://github.com/zerocity/screeninvader-theme/issues"><i class="fa fa-bug"></i> Bugs</a>
-              <a href="history"><i class="fa fa-history"></i> Top Hits</a>
-               <a href="javascript:(function(){ window.open('http://{{serverIp}}/cgi-bin/show?' + location.href); })();"><i class="fa fa-bookmark"></i> Lounge it</a>
             </div>
         </nav>
 
@@ -126,6 +111,7 @@
     <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
     <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
     <script src="bower_components/angular-notify/dist/angular-notify.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
