@@ -25,6 +25,10 @@ angular.module('09ScreeninvaderApp')
     _fastForward        = _BaseUrl + 'trigger?playerForwardMore',
     _stepForward        = _BaseUrl + 'trigger?playerNext',
   _browserClose         = _BaseUrl + 'trigger?browserClose',
+  _browserScrollUp         = _BaseUrl + 'trigger?browserScrollUp',
+  _browserScrollDown         = _BaseUrl + 'trigger?browserScrollDown',
+  _browserZoomIn         = _BaseUrl + 'trigger?browserZoomIn',
+  _browserZoomOut         = _BaseUrl + 'trigger?browserZoomOut',
        _pdfClose        = _BaseUrl + 'trigger?pdfClose',
        _getIp        = _BaseUrl + 'getip',
   _playlistClear        = _BaseUrl + 'playlist_clear',
@@ -98,6 +102,23 @@ angular.module('09ScreeninvaderApp')
       $http.get(_browserClose);
       notify('Browser will be closed soon');
     }
+
+    service.browserScrollUp = function() {
+      $http.get(_browserScrollUp);
+    }
+
+        service.browserScrollDown = function() {
+      $http.get(_browserScrollDown);
+    }
+
+    service.browserZoomOut = function() {
+      $http.get(_browserZoomOut);
+    }
+
+        service.browserZoomIn = function() {
+      $http.get(_browserZoomIn);
+    }
+
 
     service.pdfClose = function() {
       $http.get(_pdfClose);

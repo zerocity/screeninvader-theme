@@ -2,21 +2,21 @@
   <div ng-show="!model.playlist.items.length">
     <h1>Connecting to Screeninvader ...</h1>
   </div>
-  <div class="viewBig">
-    <div class="row" ng-repeat="item in model.playlist.items" ngCloak>
-      <div class="col-xs-1">
-          <youtube-Thumbnail url="item.source" size='64' />
+  <div class="viewSmall">
+    <div class="row readability" ng-repeat="item in model.playlist.items" ngCloak>
+
+      <div class="col-xs-11 col-sm-11 col-md-11">
+          <a ui-sref="app.action({ type: 'play',id:item.id })" ng-class="{activeItem: item.id==model.playlist.index}" class="title" title="play">
+            <span> <i class="fa fa-play playIcon"></i> {{item.id + 1}} - {{item.title}} </span>
+            <youtube-Thumbnail url="item.source" style="float:left" size='64' />
+          </a>
       </div>
-      <div class="col-xs-9 col-sm-10 col-md-10">
-        <a ui-sref="app.action({ type: 'play',id:item.id })" ng-class="{activeItem: item.id==model.playlist.index}" class="title" title="play">
-          <i class="glyphicon glyphicon-play playIcon"></i> {{item.id + 1}} - {{item.title}}
-        </a>
-      </div>
+
       <div class="col-xs-1 col-sm-1 col-md-1" style="padding-right: 0px; padding-left: 0px;">
         <a ui-sref="app.action({ type: 'del',id:item.id })">
-          <span class="glyphicon glyphicon-trash"></span>
+          <span class="fa fa-trash-o"></span>
         </a>
-        <a ng-click="getUrl(item.id +'_url')">url</a>
+       <a ng-click="getUrl(item.id +'_url')">url</a>
       </div>
       <input id="{{item.id + '_url'}}" class="hide form-control" type="text" value="{{item.source}}" >
     </div>

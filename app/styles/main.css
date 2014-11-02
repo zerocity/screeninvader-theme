@@ -10,6 +10,18 @@
   font-size: 1.3em;
 }
 
+.readability:nth-child(odd) {
+    background: #080707;
+    border-right: 1px;
+    border-color: #7E7E7E;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.readability:nth-child(odd) {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
 .nopadding {
   padding: 0 !important;
   margin: 0 !important;
@@ -199,6 +211,7 @@ ul.menu {
   text-overflow: ellipsis;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
+  padding-left: 0.2em;
   font-size: 1em;
 }
 

@@ -31,6 +31,9 @@
             <a id="jsonexport" ui-sref="app.playerControll({type: 'playlist-save'})" title="save Playlist">
                 <i class="fa fa-save"></i>
             </a>
+            <a ui-sref="app.posturl()" title="Post a link or upload images/movies/etc">
+                  <i class="fa fa-globe"> </i>
+            </a>
 
             <div class="pushRightSide">
                 <div>vol: <a href="#" editable-range="model.sound.volume" e-step="5" onbeforesave="updateSound($data)">

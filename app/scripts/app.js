@@ -231,6 +231,22 @@ angular
               JanoshDriver.browserClose();
               resetUrl();
               break;
+            case 'browserUp':
+              JanoshDriver.browserScrollUp();
+              resetUrl();
+              break;
+            case 'browserDown':
+              JanoshDriver.browserScrollDown();
+              resetUrl();
+              break;
+            case 'browserZoomOut':
+              JanoshDriver.browserZoomOut();
+              resetUrl();
+              break;
+            case 'browserZoomIn':
+              JanoshDriver.browserZoomIn();
+              resetUrl();
+              break;
             case 'pdfClose':
               JanoshDriver.pdfClose();
               resetUrl();

@@ -2,7 +2,7 @@
   <div ng-show="!model.playlist.items.length">
     <h1>Connecting to Screeninvader ...</h1>
   </div>
-  <div class="row" ng-repeat="item in model.playlist.items" ngCloak>
+  <div class="row readability" ng-repeat="item in model.playlist.items" ngCloak>
       <div class="col-xs-10 col-sm-11 col-md-11">
         <a ui-sref="app.action({ type: 'play',id: item.id })" ng-class="{activeItem: item.id == model.playlist.index}" class="title" title="play" >
            <i class="glyphicon glyphicon-play playIcon " ></i> {{item.id + 1}} - {{item.title}}

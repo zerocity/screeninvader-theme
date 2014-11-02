@@ -3,8 +3,9 @@
         <div class="col-xs-12 col-sm-6 col-md-4" >
             <div class="pull-left">
                 <a ui-sref="app.playerControll({type: 'queue' })" title="stop queue mode" ng-class="{active: model.playlist.queue == 'true' }" class="fa fa-refresh"></a>
-                <a title="close Image" ui-sref="app.playerControll({type: 'browserClose' })" ui-sref="app.playerControll({type: 'queue' })" ng-class="{active: model.image.active == 'true' }" class="fa fa-picture-o"></a>
-                <a title="close Browser" ui-sref="app.playerControll({type: 'browserClose' })" ng-class="{active: model.browser.active == 'true' }" class="fa fa-globe"></a>
+                <a title="close Image" ui-sref="app.playerControll({type: 'browserClose' })" ui-sref="app.playerControll({type: 'queue' })"
+                ng-show="model.image.active" class="fa fa-picture-o"></a>
+                <a title="close Browser" ui-sref="app.playerControll({type: 'browserClose' })" ng-show="model.browser.active" class="fa fa-globe"></a>
                 <a title="close player" ui-sref="app.playerControll({type: 'playerClose' })" ng-class="{active: model.player.active == 'true' }" class="fa fa-play remotePanel"></a>
 
                 <a title="show simple list " ui-sref="app.list" ui-sref-active="active"class="fa fa-align-justify"> </a>
@@ -13,5 +14,23 @@
                 <a title="only image mode" ui-sref="app.thumb" ui-sref-active="active"class="fa fa-th"> </a>
             </div>
         </div>
+    </div>
+</div>
+<div class="box-NoScroll videoController" ng-show="model.browser.active">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4" >
+                <a  title="Up"
+                      ui-sref="app.playerControll({type: 'browserUp' })"
+                      class="fa fa-arrow-circle-o-up remotePanel"></a>
+                <a  title="Down"
+                      ui-sref="app.playerControll({type: 'browserDown' })"
+                      class="fa fa-arrow-circle-o-down remotePanel"></a>
+                <a  title="Zoom In"
+                      ui-sref="app.playerControll({type: 'browserZoomIn' })"
+                      class="fa fa-search-minus remotePanel"></a>
+                <a  title="Zoom out"
+                      ui-sref="app.playerControll({type: 'browserZoomOut' })"
+                      class="fa fa-search-plus remotePanel"></a>
+          </div>
     </div>
 </div>
