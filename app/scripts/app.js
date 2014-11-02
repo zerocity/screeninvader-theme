@@ -16,7 +16,6 @@ angular
   .config(function($httpProvider,$stateProvider,$urlRouterProvider,$sceDelegateProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.useXDomain = true;
-
     $urlRouterProvider.otherwise('/');
 
     var youtubeSearchView = {
@@ -117,7 +116,7 @@ angular
 
     var itemActions = {
         url: "action/:type/:id",
-        onEnter: function($stateParams, $state,$rootScope,JanoshDriver) {
+        onEnter: [ '$stateParams', '$state','$rootScope','JanoshDriver' ,function($stateParams, $state,$rootScope,JanoshDriver) {
 
            var resetUrl = function() {
             // back to last
@@ -155,12 +154,12 @@ angular
               resetUrl();
               break;
            }
-        }
+        }]
     };
 
     var playerControll = {
         url:'controll/:type',
-        onEnter: function($stateParams, $state,$rootScope,JanoshDriver) {
+        onEnter:[ '$stateParams', '$state','$rootScope','JanoshDriver' ,function($stateParams, $state,$rootScope,JanoshDriver) {
 
            var resetUrl = function() {
             // back to last
@@ -178,6 +177,10 @@ angular
           switch($stateParams.type) {
             case 'playlist-clear':
               JanoshDriver.playlistClear();
+              resetUrl();
+              break;
+            case 'playlist-save':
+              JanoshDriver.playlistSave();
               resetUrl();
               break;
             case 'del':
@@ -249,7 +252,7 @@ angular
               resetUrl();
               break;
           }
-        }
+        }]
     };
 
     $stateProvider
