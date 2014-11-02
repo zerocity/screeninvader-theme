@@ -1,26 +1,25 @@
-<div class="box" ng-style="style(80+toggleMenuSize)" resize>
-    <dl class="viewSmall">
-        <dt  ng-repeat-start="item in model.playlist.items" ngCloak>
-            <youtube-Thumbnail url="item.source" size='32' />
-        </dt>
-        <dd>
-            <a ui-sref="app.action({ type: 'play',id:item.id })" ng-class="{activeItem: item.id==model.playlist.index}" class="title" title="play">
-                <i class="glyphicon glyphicon-play playIcon"></i> {{item.id + 1}} - {{item.title}}
-            </a>
-        </dd>
-
-        <dt class="pushRightSide">
-            <a ui-sref="app.action({ type: 'del',id:item.id })">
-                <span class="glyphicon glyphicon-trash"></span>
-            </a>
-        </dt>
-
-        <dd class="pushRightSide">
-            <a ng-click="getUrl(item.id +'_url')">url</a>
-        </dd>
-        <input id="{{item.id + '_url'}}" class="hide form-control" type="text" value="{{item.source}}" >
-        <hr ng-repeat-end>
-    </dl >
-   <div id="buttom"></div>
+<div class="box" ng-style="style(88+toggleMenuSize)" resize>
+  <div ng-show="!model.playlist.items.length">
+    <h1>Connecting to Screeninvader ...</h1>
+  </div>
+  <div class="viewSmall">
+    <div class="row" ng-repeat="item in model.playlist.items" ngCloak>
+      <div class="col-xs-1">
+        <youtube-Thumbnail url="item.source" size='32' />
+      </div>
+      <div class="col-xs-9 col-sm-9 col-md-9">
+        <a ui-sref="app.action({ type: 'play',id:item.id })" ng-class="{activeItem: item.id==model.playlist.index}" class="title" title="play">
+          <i class="glyphicon glyphicon-play playIcon"></i> {{item.id + 1}} - {{item.title}}
+        </a>
+      </div>
+      <div class="col-xs-1 col-sm-1 col-md-1" style="padding-right: 0px; padding-left: 0px;">
+        <a ui-sref="app.action({ type: 'del',id:item.id })">
+          <span class="glyphicon glyphicon-trash"></span>
+        </a>
+       <a ng-click="getUrl(item.id +'_url')">url</a>
+      </div>
+      <input id="{{item.id + '_url'}}" class="hide form-control" type="text" value="{{item.source}}" >
+    </div>
+  </div>
+  <div id="buttom"></div>
 </div>
-

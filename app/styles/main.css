@@ -7,7 +7,7 @@
 }
 
 .fa {
-  font-size: 1.6em;
+  font-size: 1.3em;
 }
 
 .nopadding {
@@ -191,10 +191,15 @@ ul.menu {
 }
 
 .title {
-  margin: 0;
-  border-radius: 3px;
-  border: 1px solid #1E1E1E;
   color: #a0a0a0;
+  display: block;
+  white-space: nowrap;
+  width: 99%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  font-size: 1em;
 }
 
 .title i.playIcon {
@@ -208,7 +213,6 @@ ul.menu {
 .title:hover {
   background-color: #FF9C39;
   border-radius: 3px;
-  border: 1px solid #FF9C39;
   color: #ffffff;
 }
 
@@ -257,7 +261,8 @@ dl {
 .viewSmall dd,
 .viewSmall dt,
 .viewSmall a {
-  line-height: 34px;
+  line-height: 26px;
+  margin-left: 10px;
 }
 
 .viewThumb {
@@ -308,7 +313,7 @@ hr {
 /*youtube search css*/
 
 .search {
-  width: 89%;
+
   border-bottom: 1px solid rgba(0,0,0,0.05);
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -332,7 +337,7 @@ hr {
 .result .actors,
 .result .description,
 .result .title {
-  margin-left: 13px;
+ margin-left: 13px;
   display: block;
   white-space: nowrap;
   width: 99%;

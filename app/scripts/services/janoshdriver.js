@@ -1,9 +1,7 @@
 'use strict';
 
 angular.module('09ScreeninvaderApp')
-  .factory('JanoshDriver', function ($http,$timeout,$rootScope,$firebase,Youtubeapi,notify) {
-
-
+  .factory('JanoshDriver', ['$http','$timeout','$rootScope','$firebase','Youtubeapi','notify', function ($http,$timeout,$rootScope,$firebase,Youtubeapi,notify) {
   var ref = new Firebase("https://brilliant-fire-7900.firebaseio.com");
   var sync = $firebase(ref);
 
@@ -30,7 +28,7 @@ angular.module('09ScreeninvaderApp')
        _pdfClose        = _BaseUrl + 'trigger?pdfClose',
        _getIp        = _BaseUrl + 'getip',
   _playlistClear        = _BaseUrl + 'playlist_clear',
-
+  _playlistSave        = _BaseUrl + 'playlist_save',
 
           service       = {},
           _model        = {},
@@ -64,6 +62,25 @@ angular.module('09ScreeninvaderApp')
       $http.get(_playlistClear);
       notify('Playlist Cleared');
     }
+
+    service.playlistSave = function() {
+
+    var extm3u = ''
+    _.map($rootScope.model.playlist.items,function(entry) {
+        extm3u += "#EXTINF: 1, "+entry.title+" \n"+entry.source+'\n'
+    })
+
+      var encodeJson = window.btoa( extm3u )
+      var downloadLink = document.createElement("a");
+
+      downloadLink.textContent='Generated playlist';
+      downloadLink.download = "playlist.m3u"
+      downloadLink.href = "data:text/extm3u;base64," + encodeJson;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      notify('Playlist export');
+   }
 
     service.setSoundMinus = function() {
       var v = parseInt($rootScope.model.sound.volume) - 15 ;
@@ -206,4 +223,4 @@ angular.module('09ScreeninvaderApp')
     }
 
     return service
-});
+}]);
