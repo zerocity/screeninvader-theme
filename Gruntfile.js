@@ -71,7 +71,6 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          open: true,
           base: [
             '.tmp',
             '<%= yeoman.app %>'
@@ -384,8 +383,8 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
-    'concat',
-    'ngmin',
+   'concat',
+   'ngmin',
     'copy:dist',
     'cdnify',
     'cssmin',
