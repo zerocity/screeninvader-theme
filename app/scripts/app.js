@@ -19,106 +19,111 @@ angular
     $urlRouterProvider.otherwise('/');
 
     var youtubeSearchView = {
-         url:'search',
-         views:{
-               'content@':{
-                  controller:'YoutubesearchCtrl',
-                  templateUrl:'views/youtubesearch.html'
-               }
-         }
+      url:'search',
+      views:{
+        'content@':{
+          controller:'YoutubesearchCtrl',
+          templateUrl:'views/youtubesearch.html'
+        }
+      }
     };
 
     var historyView = {
-         url:'history',
-         views:{
-               'content@':{
-                  controller:'HistoryCtrl',
-                  templateUrl:'views/history.html'
-               }
-         }
+      url:'history',
+      views:{
+        'content@':{
+          controller:'HistoryCtrl',
+          templateUrl:'views/history.html'
+        }
+      }
     };
 
     var postUrlView = {
-         url:'posturl',
-         views:{
-               'content@':{
-                  controller:'YoutubesearchCtrl',
-                  templateUrl:'views/posturl.html'
-               }
-         }
+      url:'posturl',
+      views:{
+        'content@':{
+          controller:'YoutubesearchCtrl',
+          templateUrl:'views/posturl.html'
+        }
+      }
     };
 
     var viewList = {
-         url:'list',
-         views:{
-               'content@':{
-                  controller: 'MainCtrl',
-                  templateUrl:'views/main.html'
-               }
-         }
+      url:'list',
+      views:{
+        'content@':{
+          controller: 'MainCtrl',
+          templateUrl:'views/main.html'
+        }
+      }
     };
 
     var viewSmall = {
-         url:'small',
-         views:{
-               'content@':{
-                  controller: 'MainCtrl',
-                  templateUrl:'views/viewsmall.html'
-               }
-         }
+      url:'small',
+      views:{
+        'content@':{
+          controller: 'MainCtrl',
+          templateUrl:'views/viewsmall.html'
+        }
+      }
     };
 
     var viewBig = {
-         url:'big',
-         views:{
-               'content@':{
-                  controller: 'MainCtrl',
-                  templateUrl:'views/viewbig.html'
-               }
-         }
+      url:'big',
+        views:{
+        'content@':{
+          controller: 'MainCtrl',
+          templateUrl:'views/viewbig.html'
+        }
+      }
     };
 
     var viewThump = {
-         url:'thumb',
-         views:{
-               'content@':{
-                  controller: 'MainCtrl',
-                  templateUrl:'views/viewthump.html'
-               }
-         }
+      url:'thumb',
+      views:{
+        'content@':{
+          controller: 'MainCtrl',
+          templateUrl:'views/viewthump.html'
+        }
+      }
     };
 
     var basicLayout = {
-          url: '/',
-          views:{
-             'topBar':{
-                controller: 'MainCtrl',
-                templateUrl:'views/topbar.html'
-             },
-             'playerController':{ // todo wronge nameing
-                controller: 'PlayercontrollerCtrl',
-                templateUrl:'views/playercontroller.html'
-             },
-             'viewController':{ // todo wronge nameing
-                controller: 'VideocontrollerCtrl',
-                templateUrl:'views/videocontroller.html'
-             },
-             'content':{
-                controller: 'MainCtrl',
-                templateUrl:'views/main.html'
-             },
-             'footer':{
-                controller : 'FooterCtrl',
-                templateUrl:'views/footer.html'
-             }
-          }
+      url: '/',
+      views:{
+        'topBar':{
+          controller: 'MainCtrl',
+          templateUrl:'views/topbar.html'
+        },
+        'playerController':{ // todo wronge nameing
+          controller: 'PlayercontrollerCtrl',
+          templateUrl:'views/playercontroller.html'
+        },
+        'viewController':{ // todo wronge nameing
+          controller: 'VideocontrollerCtrl',
+          templateUrl:'views/videocontroller.html'
+        },
+        'content':{
+          controller: 'MainCtrl',
+          templateUrl:'views/main.html'
+        },
+        'footer':{
+          controller : 'FooterCtrl',
+          templateUrl:'views/footer.html'
+        }
+      }
     };
 
     var itemActions = {
-        url: "action/:type/:id",
-        onEnter: [ '$stateParams', '$state','$rootScope','JanoshDriver' ,function($stateParams, $state,$rootScope,JanoshDriver) {
+      url: "action/:type/:id",
+      onEnter: [
+        '$stateParams',
+        '$state',
+        '$rootScope',
+        'JanoshDriver', 
+        function($stateParams, $state,$rootScope,JanoshDriver) {
 
-           var resetUrl = function() {
+          var resetUrl = function() {
             // back to last
             var oldURL = location.href.split('#/')[1];
             var oldState = function() {
@@ -153,15 +158,20 @@ angular
               JanoshDriver.pause();
               resetUrl();
               break;
-           }
-        }]
+          }
+        }
+      ];
     };
 
     var playerControll = {
-        url:'controll/:type',
-        onEnter:[ '$stateParams', '$state','$rootScope','JanoshDriver' ,function($stateParams, $state,$rootScope,JanoshDriver) {
-
-           var resetUrl = function() {
+      url:'controll/:type',
+      onEnter:[ 
+        '$stateParams', 
+        '$state',
+        '$rootScope',
+        'JanoshDriver',
+        function($stateParams, $state,$rootScope,JanoshDriver) {
+          var resetUrl = function() {
             // back to last
             var oldURL = location.href.split('#/')[1];
             var oldState = function() {
@@ -268,35 +278,38 @@ angular
               resetUrl();
               break;
           }
-        }]
+        }
+      ]
     };
 
     $stateProvider
-       .state('app',basicLayout)
-       .state('app.search',youtubeSearchView)
-       .state('app.posturl',postUrlView)
-       .state('app.action',itemActions)
-       .state('app.playerControll',playerControll)
-       .state('app.list',viewList)
-       .state('app.small',viewSmall)
-       .state('app.big',viewBig)
-       .state('app.thumb',viewThump)
-       .state('app.history',historyView)
+      .state('app',basicLayout)
+      .state('app.search',youtubeSearchView)
+      .state('app.posturl',postUrlView)
+      .state('app.action',itemActions)
+      .state('app.playerControll',playerControll)
+      .state('app.list',viewList)
+      .state('app.small',viewSmall)
+      .state('app.big',viewBig)
+      .state('app.thumb',viewThump)
+      .state('app.history',historyView)
   })
   .run(function(JanoshDriver,$timeout,$rootScope,editableOptions,editableThemes){
     editableOptions.theme = 'bs3';
     editableThemes.bs3.inputClass = 'input-xs pushRightSide';
     editableThemes.bs3.buttonsClass = 'btn-xs pushRightSide';
     $rootScope.toggleMenuSize = 0;
-/*    $rootScope.previousState = {};
+/*    
+    $rootScope.previousState = {};
     $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
         // store previous state in $rootScope
         $rootScope.previousState.name = fromState.name;
         $rootScope.previousState.params = fromParams;
-    });*/
+    });
+*/
 
     $timeout(function() {
       console.log('run');
-    },0);
+    }, 0 );
 
   });
