@@ -231,7 +231,7 @@ angular.module('09ScreeninvaderApp')
     service.deleatItem = function(key) {
       var cc = parseInt(key) +1
       $http.get(_delItem+key);
-      notify('Item ' +cc  + ' will be deleated')
+      notify('Item ' +cc  + ' will be deleted')
     }
 
     service.addItem = function(source) {
