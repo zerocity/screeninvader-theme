@@ -1,3 +1,4 @@
+/* global notify: true */
 'use strict';
 
 angular
@@ -13,7 +14,12 @@ angular
   ]).constant('angularMomentConfig', {
     preprocess: 'unix' // optional
   })
-  .config(function($httpProvider,$stateProvider,$urlRouterProvider,$sceDelegateProvider) {
+  .config( function(
+      $httpProvider,
+      $stateProvider,
+      $urlRouterProvider,
+      $sceDelegateProvider
+  ) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.useXDomain = true;
     $urlRouterProvider.otherwise('/');
@@ -70,7 +76,7 @@ angular
 
     var viewBig = {
       url:'big',
-        views:{
+      views:{
         'content@':{
           controller: 'MainCtrl',
           templateUrl:'views/viewbig.html'
@@ -115,12 +121,12 @@ angular
     };
 
     var itemActions = {
-      url: "action/:type/:id",
+      url: 'action/:type/:id',
       onEnter: [
         '$stateParams',
         '$state',
         '$rootScope',
-        'JanoshDriver', 
+        'JanoshDriver',
         function($stateParams, $state,$rootScope,JanoshDriver) {
 
           var resetUrl = function() {
@@ -128,30 +134,30 @@ angular
             var oldURL = location.href.split('#/')[1];
             var oldState = function() {
               if (oldURL === '') {
-                return 'app'
+                return 'app';
               } else {
-                return 'app.' + oldURL
+                return 'app.' + oldURL;
               }
-            }
+            };
             return $state.go(oldState());
-          }
+          };
 
           switch($stateParams.type) {
             case 'del':
-              if ($stateParams.id) {JanoshDriver.deleatItem($stateParams.id) }
+              if ($stateParams.id) { JanoshDriver.deleatItem($stateParams.id); }
               resetUrl();
               break;
             case 'add':
               //$stateParams.id is the youtube Source
-              if ($stateParams.id) {JanoshDriver.addItem($stateParams.id) }
+              if ($stateParams.id) { JanoshDriver.addItem($stateParams.id); }
               resetUrl();
               break;
             case 'play':
-              if ($stateParams.id) {JanoshDriver.playItem($stateParams.id) }
+              if ($stateParams.id) { JanoshDriver.playItem($stateParams.id); }
               resetUrl();
               break;
             case 'stop':
-              JanoshDriver.stop()
+              JanoshDriver.stop();
               resetUrl();
               break;
             case 'pause':
@@ -165,8 +171,8 @@ angular
 
     var playerControll = {
       url:'controll/:type',
-      onEnter:[ 
-        '$stateParams', 
+      onEnter:[
+        '$stateParams',
         '$state',
         '$rootScope',
         'JanoshDriver',
@@ -176,13 +182,13 @@ angular
             var oldURL = location.href.split('#/')[1];
             var oldState = function() {
               if (oldURL === '') {
-                return 'app'
+                return 'app';
               } else {
-                return 'app.' + oldURL
+                return 'app.' + oldURL;
               }
-            }
+            };
             return $state.go(oldState());
-          }
+          };
 
           switch($stateParams.type) {
             case 'playlist-clear':
@@ -194,11 +200,11 @@ angular
               resetUrl();
               break;
             case 'del':
-              if ($stateParams.id) {JanoshDriver.deleatItem($stateParams.id) }
+              if ($stateParams.id) { JanoshDriver.deleatItem($stateParams.id); }
               resetUrl();
               break;
             case 'play':
-              if ($stateParams.id) {JanoshDriver.playItem($stateParams.id) }
+              if ($stateParams.id) { JanoshDriver.playItem($stateParams.id); }
               resetUrl();
               break;
             case 'step-backward':
@@ -293,6 +299,7 @@ angular
       .state('app.big',viewBig)
       .state('app.thumb',viewThump)
       .state('app.history',historyView)
+    ;
   })
   .run(function(JanoshDriver,$timeout,$rootScope,editableOptions,editableThemes){
     editableOptions.theme = 'bs3';

@@ -11,15 +11,15 @@
 }
 
 .readability:nth-child(odd) {
-    background: #080707;
-    border-right: 1px;
-    border-color: #7E7E7E;
-    padding-top: 2px;
-    padding-bottom: 2px;
+  background: #080707;
+  border-right: 1px;
+  border-color: #7E7E7E;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 .readability:nth-child(odd) {
-    padding-top: 2px;
-    padding-bottom: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .nopadding {
