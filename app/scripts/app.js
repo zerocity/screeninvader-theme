@@ -160,7 +160,7 @@ angular
               break;
           }
         }
-      ];
+      ]
     };
 
     var playerControll = {
