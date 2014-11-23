@@ -3,17 +3,19 @@
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" id="postUrlQuerySubmit" ng-click="postUrl()">Post</button>
       </span>
-      <input type="url" ng-model="postUrlQuery" class="form-control" id="postUrlQuery" placeholder="post url here">
+      <input type="url" ng-model="postUrlQuery" class="form-control" 
+        id="postUrlQuery" placeholder="post url here" ng-keydown="($event.which === 13)?postUrl():0">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" id="postUrlQuerySubmit" ng-click="postUrl()">Post</button>
       </span>
-    </div><hr>
-      <div class="box"
-        upload-button url="cgi-bin/uploadstream"
-        accept="{{acceptTypes}}"
-        on-upload="onUpload(files)"
-        on-error="onError(response)"
-        on-success="onSuccess(response)"
-        on-complete="onComplete(response)"> File Upload </div>
+    </div>
+    <hr>
+    <div class="box"
+      upload-button url="cgi-bin/uploadstream"
+      accept="{{acceptTypes}}"
+      on-upload="onUpload(files)"
+      on-error="onError(response)"
+      on-success="onSuccess(response)"
+      on-complete="onComplete(response)"> File Upload </div>
     </div>
 </div>

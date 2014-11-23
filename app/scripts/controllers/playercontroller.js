@@ -7,7 +7,7 @@ angular.module('09ScreeninvaderApp')
     $scope.playerSetting = true;
 
     $scope.toggleSetting = function() {
-      $scope.playerSetting = !$scope.playerSetting
+      $scope.playerSetting = !$scope.playerSetting;
     };
 
     $rootScope.$watch('model',function() {
@@ -15,7 +15,6 @@ angular.module('09ScreeninvaderApp')
     });
 
     $scope.updateSound = function(vol) {
-      JanoshDriver.setSound(vol)
-    }
-
-});
+      JanoshDriver.setSound(vol);
+    };
+  });
