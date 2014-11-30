@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
-	<meta charset="utf-8">
-	<style>
+  <meta charset="utf-8">
+  <style>
 body {
   font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -37,107 +37,193 @@ h1, h2 {
   padding-right:5px;
   cursor:pointer;
 }
-	</style>
+  </style>
 </head>
 <body>
-	<p>
-		Show:
-		<a class="period orange" id="day">Last 24h</a>
-		<a class="period orange" id="week">Last week</a>
-		<a class="period orange" id="month">Last month</a>
-		<a class="period orange" id="year">Last year</a>
-		<a class="period orange" id="ever">Ever</a>
-	</p>
+  <p>
+    Show:
+    <a class="period orange" id="day">Last 24h</a>
+    <a class="period orange" id="week">Last week</a>
+    <a class="period orange" id="month">Last month</a>
+    <a class="period orange" id="year">Last year</a>
+    <a class="period orange" id="ever">Ever</a>
+  </p>
 
-	<h1>Most Lounged Item <span id="time">Ever</span>:</h1>
-	<div id="most"></div>
-	<ol id="list" start="2"></ol>
+  <h1>Most Lounged Item <span id="time">Ever</span>:</h1>
+  <div id="most"></div>
+  <ol id="list" start="2"></ol>
 
-	<script src="../bower_components/jquery/dist/jquery.js"></script>
-	<script>
+      <script type="text/javascript" src="https://cdn.firebase.com/v0/firebase.js"></script>
+      <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+      <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+        <script>
+        var messagesRef = new Firebase('https://brilliant-fire-7900.firebaseio.com/');
+
+        messagesRef.on( 'value',function(data) {
+          message = data.val();
+          //message.title
+          //message.date
+          //message.urls
+
+          _.map(message,function(data) {
+              $('#list').append('<li>'+data.title +'   ' + data.date+'   ' + data.urls+'</li>');
+          });
+
+        });
+
+
+  </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <style>
+body {
+  font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #7E7E7E;
+  background: #1E1E1E;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+  padding: 5px;
+  margin-left:20px;
+}
+a {
+  color: #7E7E7E;
+  text-decoration: none;
+}
+a:hover {
+  color: #FF9C39;
+  text-decoration: none;
+}
+h1, h2 {
+  margin:0;
+}
+#most {
+  margin-bottom:50px;
+}
+.orange {
+  color: #FF9C39;
+}
+.orange:hover {
+  text-decoration: underline;
+}
+.period {
+  padding-right:5px;
+  cursor:pointer;
+}
+  </style>
+</head>
+<body>
+  <p>
+    Show:
+    <a class="period orange" id="day">Last 24h</a>
+    <a class="period orange" id="week">Last week</a>
+    <a class="period orange" id="month">Last month</a>
+    <a class="period orange" id="year">Last year</a>
+    <a class="period orange" id="ever">Ever</a>
+  </p>
+
+  <h1>Most Lounged Item <span id="time">Ever</span>:</h1>
+  <div id="most"></div>
+  <ol id="list" start="2"></ol>
+
+      <script type="text/javascript" src="https://cdn.firebase.com/v0/firebase.js"></script>
+      <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+        <script>
 var time = 0;
 
 $('.period').click(function () {
-	if ($(this).attr('id') == 'ever') {
-		time = 0;
-		$('#time').html('Ever');
-	} else if ($(this).attr('id') == 'year') {
-		time = 31556926;
-		$('#time').html('Last Year');
-	} else if ($(this).attr('id') == 'month') {
-		time = 2629743;
-		$('#time').html('Last Month');
-	} else if ($(this).attr('id') == 'week') {
-		time = 604800;
-		$('#time').html('Last Week');
-	} else if ($(this).attr('id') == 'day') {
-		time = 86400;
-		$('#time').html('Last 24h');
-	}
-	getRanking();
+  if ($(this).attr('id') == 'ever') {
+    time = 0;
+    $('#time').html('Ever');
+  } else if ($(this).attr('id') == 'year') {
+    time = 31556926;
+    $('#time').html('Last Year');
+  } else if ($(this).attr('id') == 'month') {
+    time = 2629743;
+    $('#time').html('Last Month');
+  } else if ($(this).attr('id') == 'week') {
+    time = 604800;
+    $('#time').html('Last Week');
+  } else if ($(this).attr('id') == 'day') {
+    time = 86400;
+    $('#time').html('Last 24h');
+  }
+  getRanking();
 });
 
 function getRanking() {
-	$('#most').html('');
-	$('#list').html('');
-	$.getJSON('../cgi-bin/get?/history/.', function( data ) {
-		var items = [];
-		var ts = Math.round((new Date()).getTime() / 1000);
-		for (var i = 0; i < data.dates.length; i++) {
-			if (time == 0) {
-				if (data.titles[i] == '') {
-					items.push({"date":data.dates[i],"title":data.urls[i],"url":data.urls[i]});
-				} else {
-					items.push({"date":data.dates[i],"title":data.titles[i],"url":data.urls[i]});
-				}
-			} else if (data.dates[i] > ts - time) {
-				if (data.titles[i] == '') {
-					items.push({"date":data.dates[i],"title":data.urls[i],"url":data.urls[i]});
-				} else {
-					items.push({"date":data.dates[i],"title":data.titles[i],"url":data.urls[i]});
-				}
-			}
-		}
+  $('#most').html('');
+  $('#list').html('');
+      var messagesRef = new Firebase('https://brilliant-fire-7900.firebaseio.com/');
+      messagesRef.on( 'child_added',function(data) {
+            hist = data.val();
 
-		items.sort(function(a, b) {
-			return a.title > b.title ? 1 : -1;
-		})
+    var items = [];
+    var ts = Math.round((new Date()).getTime() / 1000);
+    for (var i = 0; i < hist.date.length; i++) {
+      if (time == 0) {
+        if (hist.title[i] == '') {
+          items.push({"date":hist.date[i],"title":hist.urls[i],"url":hist.urls[i]});
+        } else {
+          items.push({"date":hist.date[i],"title":hist.title[i],"url":hist.urls[i]});
+        }
+      } else if (hist.date[i] > ts - time) {
+        if (hist.title[i] == '') {
+          items.push({"date":hist.date[i],"title":hist.urls[i],"url":hist.urls[i]});
+        } else {
+          items.push({"date":hist.date[i],"title":hist.title[i],"url":hist.urls[i]});
+        }
+      }
+    }
 
-		var citems = [];
-		var count = 1;
-		for (var i = 0; i < items.length; i++) {
-			if (i == items.length-1) {
-				citems.push({"date":items[i].date,"title":items[i].title,"url":items[i].url,"count":count});
-			} else if (items[i].title != items[i+1].title) {
-				citems.push({"date":items[i].date,"title":items[i].title,"url":items[i].url,"count":count});
-				count = 1;
-			} else {
-				count++;
-			}
-		}
+    items.sort(function(a, b) {
+      return a.title > b.title ? 1 : -1;
+    })
 
-		citems.sort(function(a, b) {
-			if (a.count != b.count) {
-				if (a.count > b.count) return -1;
-				if (a.count < b.count) return 1;
-				return 0;
-			}
-			if (a.date > b.date) return -1;
-			if (a.date < b.date) return 1;
-			return 0;
-		})
+            console.log(items)
 
-		var d = new Date(citems[0].date*1000);
+    var citems = [];
+    var count = 1;
+    for (var i = 0; i < items.length; i++) {
+      if (i == items.length-1) {
+        citems.push({"date":items[i].date,"title":items[i].title,"url":items[i].url,"count":count});
+      } else if (items[i].title != items[i+1].title) {
+        citems.push({"date":items[i].date,"title":items[i].title,"url":items[i].url,"count":count});
+        count = 1;
+      } else {
+        count++;
+      }
+    }
 
-		$('#most').append('<h2><a target="_blank" href="'+ citems[0].url + '" class="orange">' + citems[0].title + '</a></h2>Views: ' + citems[0].count + ' – Last viewed on '+ d.toLocaleDateString() + ' ' + d.toLocaleTimeString() +' – <a target="_blank" href="http://10.20.30.40/cgi-bin/show?' + citems[0].url + '" class="orange">Re-Lounge!</a>');
+    citems.sort(function(a, b) {
+      if (a.count != b.count) {
+        if (a.count > b.count) return -1;
+        if (a.count < b.count) return 1;
+        return 0;
+      }
+      if (a.date > b.date) return -1;
+      if (a.date < b.date) return 1;
+      return 0;
+    })
 
-		for (var i = 1; i < citems.length; i++) {
-			var d = new Date(citems[i].date*1000);
-			$('#list').append('<li title="Last viewed on '+ d.toLocaleDateString() + ' ' + d.toLocaleTimeString() +'"><a target="_blank" href="'+ citems[i].url + '">' + citems[i].title + '</a> – Views: ' + citems[i].count + ' – <a target="_blank" href="http://10.20.30.40/cgi-bin/show?' + citems[i].url + '" class="orange">Re-Lounge!</a></li>');
-		}	
-	});
+    var d = new Date(citems[0].date*1000);
+
+    $('#most').append('<h2><a target="_blank" href="'+ citems[0].url + '" class="orange">' + citems[0].title + '</a></h2>Views: ' + citems[0].count + ' – Last viewed on '+ d.toLocaleDateString() + ' ' + d.toLocaleTimeString() +' – <a target="_blank" href="http://10.20.30.40/cgi-bin/show?' + citems[0].url + '" class="orange">Re-Lounge!</a>');
+
+    for (var i = 1; i < citems.length; i++) {
+      var d = new Date(citems[i].date*1000);
+      $('#list').append('<li title="Last viewed on '+ d.toLocaleDateString() + ' ' + d.toLocaleTimeString() +'"><a target="_blank" href="'+ citems[i].url + '">' + citems[i].title + '</a> – Views: ' + citems[i].count + ' – <a target="_blank" href="http://10.20.30.40/cgi-bin/show?' + citems[i].url + '" class="orange">Re-Lounge!</a></li>');
+    }
+  });
 }
 
 getRanking();
-	</script>
+  </script>
 </body>
+ -->
