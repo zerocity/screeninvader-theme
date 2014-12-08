@@ -9,7 +9,7 @@ angular.module('09ScreeninvaderApp')
 // _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
   var   _BaseUrl        = 'http://10.20.30.40/cgi-bin/',
         _getAll         = _BaseUrl + 'get?/.',
-        _getHash  = _BaseUrl +'hash',
+        _getHash        = _BaseUrl +'hash',
       _playItem         = _BaseUrl + 'playlist_jump?',
         _delItem        = _BaseUrl + 'playlist_remove?',
     _toggleQueue        = _BaseUrl + 'set?/playlist/queue=',
