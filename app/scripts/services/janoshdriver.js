@@ -55,6 +55,7 @@ angular.module('09ScreeninvaderApp')
           return m[1].replace(/<\/?title>/g,' ').replace(/\s+/,' ');
         }
         return; // returns undefined
+
       }
 
       service.setSoundPlus = function() {
